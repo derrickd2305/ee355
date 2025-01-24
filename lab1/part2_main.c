@@ -90,13 +90,32 @@ double get_mean(double* sample, int n){
 
 double get_second_moment(double* sample1, double* sample2, double mean1, double mean2, int n){
    // compute the second moment of two input arrays (sample1 and sample2), given their mean values (mean1 and mean2) and the length (n)
+   /*
    double val = 0;
+   
    for(int i = 0; i < n; i++){
       val = val + (sample1[i] - mean1)*(sample2[i] - mean2);
    }
+   
    //printf("value is %0.2lf \n", val);
    val = val/(n-1);
    return val;
+   */
+
+   double a = 0;
+   double b = 0;
+   double c = 0;
+   double d = 0;
+   int e = 0;
+
+   for(int i = 0; i < n; i++){
+      a = sample1[i] - mean1;
+      b = sample2[i] - mean2; 
+      c = a*b; 
+      d = d + c;
+   }
+   e = n - 1;
+   return d/e;
 }
 
 
