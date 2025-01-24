@@ -84,7 +84,7 @@ double get_mean(double* sample, int n){
       sum = sum + sample[i];
    }
    double mean = sum/n;
-   printf("mean: \n", mean);
+   printf("mean: %0.2lf \n", mean);
    return mean;
     
 }
