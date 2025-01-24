@@ -48,7 +48,7 @@ int get_sample_num(char* in_arr){
    // determine the sample number by counting space
    int count = 0; 
    for(int i = 0; in_arr[i] != '\0'; i++){
-      printf("%0.2lf", in_arr[i])
+      printf("%0.2lf", in_arr[i]);
       if(in_arr[i] = ' '){
          count++;
       }
