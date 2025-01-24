@@ -94,6 +94,7 @@ double get_second_moment(double* sample1, double* sample2, double mean1, double 
    for(int i = 0; i < n; i++){
       val = val + (sample1[i] - mean1)*(sample2[i] - mean2);
    }
+   printf("value is %0.2lf \n", val);
    val = val/(n-1);
    return val;
 }
