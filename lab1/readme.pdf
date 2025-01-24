@@ -13,7 +13,15 @@ rm -r temp
 
 If a program becomes unresponsive, what two Linux commands could you use to identify the faulty program number and terminate it? 
 
+top
+kill
+
 By using command line, how could you check the version of
 the OS
 gcc, g++
 python
+
+cat /etc/os-release
+gcc --version
+g++ --version
+python --version
