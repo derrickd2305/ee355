@@ -54,6 +54,7 @@ int get_sample_num(char* in_arr){
       }
    }
    count++;
+   printf("%d \0", count);
    return count;
 }
 
