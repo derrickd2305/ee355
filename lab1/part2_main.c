@@ -46,9 +46,11 @@ int  main (int argc, char** argv)
 
 int get_sample_num(char* in_arr){
    // determine the sample number by counting space
-   
-    
-    
+   int count = 0; 
+   for(int i = 0; in_arr[i] != '/0'; i++){
+      count++;
+   }
+   return count;
 }
 
 void get_samples(char* in_arr, int num_sample, double* sample){
