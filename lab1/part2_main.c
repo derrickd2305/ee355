@@ -48,13 +48,11 @@ int get_sample_num(char* in_arr){
    // determine the sample number by counting space
    int count = 0; 
    for(int i = 0; in_arr[i] != '\0'; i++){
-      printf("%c \0", in_arr[i]);
       if(in_arr[i] == ' '){
          count++;
       }
    }
    count++;
-   printf("%d \0", count);
    return count;
 }
 
@@ -87,28 +85,24 @@ double get_mean(double* sample, int n){
    double sum = 0;
    for(int i = 0; i < n; i++){
       sum = sum + sample[i];
-      //printf("%0.2lf \n", sample[i]);
    }
    double mean = sum/n;
-   //printf("mean: %0.2lf \n", mean);
    return mean;
     
 }
 
 double get_second_moment(double* sample1, double* sample2, double mean1, double mean2, int n){
    // compute the second moment of two input arrays (sample1 and sample2), given their mean values (mean1 and mean2) and the length (n)
-   /*
+   
    double val = 0;
    
    for(int i = 0; i < n; i++){
       val = val + (sample1[i] - mean1)*(sample2[i] - mean2);
    }
-   
-   //printf("value is %0.2lf \n", val);
    val = val/(n-1);
    return val;
-   */
-
+   
+   /*
    double a = 0;
    double b = 0;
    double c = 0;
@@ -123,6 +117,7 @@ double get_second_moment(double* sample1, double* sample2, double mean1, double 
    }
    e = n - 1;
    return d/e;
+   */
 }
 
 
