@@ -79,15 +79,23 @@ void get_samples(char* in_arr, int num_sample, double* sample){
 
 double get_mean(double* sample, int n){
    // compute the mean value of input array (sample), given its length (n)
-    
+   double sum = 0;
+   for(int i = 0; i < n; i++){
+      sum = sum + sample[i];
+   }
+   double mean = sum/n;
+   return mean;
     
 }
 
 double get_second_moment(double* sample1, double* sample2, double mean1, double mean2, int n){
    // compute the second moment of two input arrays (sample1 and sample2), given their mean values (mean1 and mean2) and the length (n)
-   
-    
-    
+   double val = 0;
+   for(int i = 0; i < n; i++){
+      val = val + (sample1[i] - mean1)*(sample2[i] - mean2);
+   }
+   val = val/(n-1);
+   return val;
 }
 
 
