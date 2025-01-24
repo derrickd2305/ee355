@@ -101,23 +101,6 @@ double get_second_moment(double* sample1, double* sample2, double mean1, double 
    }
    val = val/(n-1);
    return val;
-   
-   /*
-   double a = 0;
-   double b = 0;
-   double c = 0;
-   double d = 0;
-   int e = 0;
-
-   for(int i = 0; i < n; i++){
-      a = sample1[i] - mean1;
-      b = sample2[i] - mean2; 
-      c = a*b; 
-      d = d + c;
-   }
-   e = n - 1;
-   return d/e;
-   */
 }
 
 
