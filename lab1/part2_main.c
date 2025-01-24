@@ -49,7 +49,7 @@ int get_sample_num(char* in_arr){
    int count = 0; 
    for(int i = 0; in_arr[i] != '\0'; i++){
       printf("%c \0", in_arr[i]);
-      if(in_arr[i] = ' '){
+      if(in_arr[i] == ' '){
          count++;
       }
    }
