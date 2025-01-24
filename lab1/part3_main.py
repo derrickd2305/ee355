@@ -7,7 +7,7 @@ arrs = np.loadtxt("data_table.csv", delimiter=",", dtype=str)
 
 arrs = [i for i in arrs if len(i[0])>0]
 print(arrs)
-print(np.array(arrs).shape)
+#print(np.array(arrs).shape)
 
 #=== array preparation ===
 #1. Split arrs into two lists (arr1 and arr2), each of them store the numbers of one column in data_table.csv
