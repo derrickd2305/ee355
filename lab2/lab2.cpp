@@ -28,7 +28,7 @@ public:
         Matrix sum_mat;
         for(int i = 0; i < 10; i++){
             for(int j = 0; j < 10; j++){
-                sum_mat.data[i][j] = data[i][j] + mat2.data[i][j]
+                sum_mat.data[i][j] = data[i][j] + mat2.data[i][j];
             }
         }
         return sum_mat;
@@ -43,6 +43,7 @@ int main(){
 
     Matrix matrix1;
     Matrix matrix2; 
+    Matrix sum_mat1_mat2;
 
     for(int i = 0; i < 10; i++){
         for(int j = 0; j < 10; j++){
@@ -56,7 +57,7 @@ int main(){
     cout<<"matrix1: \n";
     matrix1.print_mat();
     cout<<"\n";
-    cout<<"matrix2: \n":
+    cout<<"matrix2: \n";
     matrix2.print_mat();
     cout<<"\n";
     cout<<"sum of matrix 1 and 2: \n";
