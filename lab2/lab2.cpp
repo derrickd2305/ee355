@@ -23,9 +23,19 @@ public:
             cout << "\n"; // New line for each row
         }
     }
+
+    Matrix mat_add(Matrix mat2){
+        Matrix sum_mat;
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                sum_mat.data[i][j] = data[i][j] + mat2.data[i][j]
+            }
+        }
+        return sum_mat;
+    }
 };
 
-// https://www.w3schools.com/cpp/ref_fstream_ifstream.asp
+// referred to this website on how to use fstream to pull info from text files https://www.w3schools.com/cpp/ref_fstream_ifstream.asp
 
 int main(){
     ifstream file1("matrix_1.txt");
@@ -41,9 +51,17 @@ int main(){
         }
     }
 
+    sum_mat1_mat2 = matrix1.mat_add(matrix2);
+
+    cout<<"matrix1: \n";
     matrix1.print_mat();
     cout<<"\n";
+    cout<<"matrix2: \n":
     matrix2.print_mat();
+    cout<<"\n";
+    cout<<"sum of matrix 1 and 2: \n";
+    sum_mat1_mat2.print_mat();
+
 
     return 0;
 }
