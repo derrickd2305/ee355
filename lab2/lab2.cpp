@@ -5,6 +5,7 @@
 using namespace std;
 
 class Matrix {
+public:
     int data[10][10]; 
     int target_row_idx;
     int maximum;
@@ -34,7 +35,7 @@ int main(){
 
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
-            cout << matrix[i][j] << "\t"; // Print each element
+            cout << matrix1.data[i][j] << "\t"; // Print each element
         }
         cout << "\n"; // New line for each row
     }
