@@ -18,7 +18,7 @@ public:
     void print_mat(Matrix mat){
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                cout << matrix1.data[i][j] << "\t"; // Print each element
+                cout << mat.data[i][j] << "\t"; // Print each element
             }
             cout << "\n"; // New line for each row
         }
