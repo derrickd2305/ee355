@@ -15,10 +15,10 @@ public:
     void mat_add(mat1, mat2);
     void mat_mult(mat1, mat2);
 */
-    void print_mat(Matrix mat){
+    void print_mat(){
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                cout << mat.data[i][j] << "\t"; // Print each element
+                cout << data[i][j] << "\t"; // Print each element
             }
             cout << "\n"; // New line for each row
         }
@@ -41,8 +41,9 @@ int main(){
         }
     }
 
-    print_mat(matrix1);
-    print_mat(matrix2);
+    matrix1.print_mat();
+    cout<<"\n";
+    matrix2.print_mat();
 
     return 0;
 }
