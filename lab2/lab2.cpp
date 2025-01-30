@@ -15,6 +15,14 @@ public:
     void mat_add(mat1, mat2);
     void mat_mult(mat1, mat2);
 */
+    void print_mat(Matrix mat){
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                cout << matrix1.data[i][j] << "\t"; // Print each element
+            }
+            cout << "\n"; // New line for each row
+        }
+    }
 };
 
 // https://www.w3schools.com/cpp/ref_fstream_ifstream.asp
@@ -33,12 +41,8 @@ int main(){
         }
     }
 
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            cout << matrix1.data[i][j] << "\t"; // Print each element
-        }
-        cout << "\n"; // New line for each row
-    }
+    print_mat(matrix1);
+    print_mat(matrix2);
 
     return 0;
 }
