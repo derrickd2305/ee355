@@ -56,7 +56,10 @@ int main(){
     Matrix matrix1;
     Matrix matrix2; 
     Matrix sum_mat1_mat2;
+<<<<<<< HEAD
     Matrix mult_mat1_mat2;
+=======
+>>>>>>> 10ac0456a2908c89818fe5a4c0ecdc46335b82b0
 
     for(int i = 0; i < 10; i++){
         for(int j = 0; j < 10; j++){
