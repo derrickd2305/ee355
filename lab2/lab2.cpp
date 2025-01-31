@@ -10,11 +10,7 @@ public:
     int target_row_idx;
     int maximum;
     int minimum;
-/*
-    void linear_search();
-    void mat_add(mat1, mat2);
-    void mat_mult(mat1, mat2);
-*/
+
     void print_mat(){
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -76,6 +72,8 @@ int main(){
     cout<<"\n";
     cout<<"sum of matrix 1 and 2: \n";
     sum_mat1_mat2.print_mat();
+    cout<<"\n product of matrix 1 and 2: \n";
+    mult_mat1_mat2.print_mat();
 
 
     return 0;
