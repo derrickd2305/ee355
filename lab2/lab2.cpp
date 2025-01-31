@@ -34,6 +34,7 @@ public:
         Matrix product_mat;
         for(int i = 0; i < 10; i++){
             for(int j = 0; j < 10; j++){
+               product_mat.data[i][j] = 0;
                 for(int k = 0; k < 10; k++){
                     product_mat.data[i][j] = product_mat.data[i][j] + data[i][k] * mat2.data[k][j];
                 }
