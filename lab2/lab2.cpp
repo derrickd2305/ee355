@@ -7,7 +7,7 @@ using namespace std;
 class Matrix {
 public:
     int data[10][10]; 
-    int target_row = -1;
+    int target_row;
     int max;
     int max_row;
     int min;
@@ -80,6 +80,9 @@ int main(){
     Matrix matrix2; 
     Matrix sum_mat1_mat2;
     Matrix mult_mat1_mat2;
+
+    matrix1.target_row = -1;
+    matrix2.target_row = -1;
 
     for(int i = 0; i < 10; i++){
         for(int j = 0; j < 10; j++){
