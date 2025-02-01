@@ -101,8 +101,8 @@ int main(){
     matrix1.print_mat();
     cout<<"\n";
     
-    cout << "matrix1: max: " << matrix1.max << " at row " << matrix1.max_row << endl;
-    cout << "matrix1: min: " << matrix1.min << " at row " << matrix1.min_row << endl;
+    cout << "max: " << matrix1.max << " at row " << matrix1.max_row << endl;
+    cout << "min: " << matrix1.min << " at row " << matrix1.min_row << endl;
     if(matrix1.target_row == -1){
         cout << "first value is not repeated";
     }
@@ -113,7 +113,17 @@ int main(){
     cout<<" \n matrix2: \n";
     matrix2.print_mat();
     cout<<"\n";
-    cout<<"sum of matrix 1 and 2: \n";
+
+    cout << "max: " << matrix2.max << " at row " << matrix2.max_row << endl;
+    cout << "min: " << matrix2.min << " at row " << matrix2.min_row << endl;
+    if(matrix2.target_row == -1){
+        cout << "first value is not repeated";
+    }
+    else{
+        cout << "first value reappears at row: " << matrix2.target_row << endl; 
+    }
+    
+    cout<<"\n sum of matrix 1 and 2: \n";
     sum_mat1_mat2.print_mat();
     cout<<"\n product of matrix 1 and 2: \n";
     mult_mat1_mat2.print_mat();
