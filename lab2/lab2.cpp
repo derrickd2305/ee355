@@ -106,12 +106,12 @@ int main(){
     mult_mat1_mat2.print_mat();
 
     cout << "matrix1: max: " << matrix1.max << " at row " << matrix1.max_row << endl;
-    cout << "matrix2: min: " << matrix2.min << " at row " << matrix2.max_row << endl;
+    cout << "matrix2: min: " << matrix2.min << " at row " << matrix2.min_row << endl;
     if(matrix1.target_row == -1){
         cout << "first value is not repeated";
     }
     else{
-        cout << "first value reappears at row: " << target_row << endl; 
+        cout << "first value reappears at row: " << matrix1.target_row << endl; 
     }
 
 
