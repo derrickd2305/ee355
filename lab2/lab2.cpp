@@ -8,9 +8,9 @@ class Matrix {
 public:
     int data[10][10]; 
     int target_row = -1;
-    int maximum;
+    int max;
     int max_row;
-    int minimum;
+    int min;
     int min_row;
 
     void print_mat(){
@@ -45,7 +45,7 @@ public:
         return product_mat;
     }
 
-    void linear_search(int &max, int &min, int &max_row, int &min_row, int &target_row){
+    void linear_search(){
         int first_num = data[0][0];
         max = data[0][0];
         min = data[0][0];
@@ -91,8 +91,8 @@ int main(){
     sum_mat1_mat2 = matrix1.mat_add(matrix2);
     mult_mat1_mat2 = matrix1.mat_mult(matrix2);
 
-    matrix1.linear_search(maximum, minimum, max_row, min_row, target_row);
-    matrix2.linear_search(maximum, minimum, max_row, min_row, target_row);
+    matrix1.linear_search();
+    matrix2.linear_search();
 
     cout<<"matrix1: \n";
     matrix1.print_mat();
@@ -105,8 +105,8 @@ int main(){
     cout<<"\n product of matrix 1 and 2: \n";
     mult_mat1_mat2.print_mat();
 
-    cout << "matrix1: max: " << matrix1.maximum << " at row " << matrix1.max_row << endl;
-    cout << "matrix2: min: " << matrix2.maximum << " at row " << matrix2.max_row << endl;
+    cout << "matrix1: max: " << matrix1.max << " at row " << matrix1.max_row << endl;
+    cout << "matrix2: min: " << matrix2.min << " at row " << matrix2.max_row << endl;
     if(matrix1.target_row == -1){
         cout << "first value is not repeated";
     }
