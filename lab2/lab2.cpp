@@ -106,7 +106,7 @@ int main(){
     // output for Q1.1
     output1_1 << "Matrix 1: \n";
     if(matrix1.target_row == -1){
-        output1_1 << "first value is not repeated";
+        output1_1 << "first value is not repeated" << endl;
     }
     else{
         output1_1 << "first value reappears at row " << matrix1.target_row << endl; 
@@ -117,7 +117,7 @@ int main(){
     // output for Q1.2 
     output1_2 << "Matrix 2: \n";
     if(matrix2.target_row == -1){
-        output1_2 << "first value is not repeated";
+        output1_2 << "first value is not repeated" << endl;
     }
     else{
         output1_2 << "first value reappears at row " << matrix2.target_row << endl; 
