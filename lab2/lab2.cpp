@@ -13,12 +13,12 @@ public:
     int min;
     int min_row;
 
-    void print_mat(){
+    void print_mat(ostream &output){
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                cout << data[i][j] << "\t"; // Print each element
+                output << data[i][j] << "\t"; // Print each element
             }
-            cout << "\n"; // New line for each row
+            output << "\n"; // New line for each row
         }
     }
 
@@ -53,17 +53,17 @@ public:
             for(int j = 0; j < 10; j++){
                 if(max < data[i][j]){
                     max = data[i][j];
-                    max_row = i + 1;
+                    max_row = i;
                 }
                 if(min > data[i][j]){
                     min = data[i][j];
-                    min_row = i + 1;
+                    min_row = i;
                 }
                 if(i == 0 && j == 0){
                     continue;
                 }
                 if(first_num == data[i][j]){
-                    target_row = i + 1; 
+                    target_row = i; 
                 }
             }
         }
@@ -75,6 +75,11 @@ public:
 int main(){
     ifstream file1("matrix_1.txt");
     ifstream file2("matrix_2.txt");
+
+    ofstream output1_1("output_Q1_1.txt");
+    ofstream output1_2("output_Q1_2.txt");
+    ofstream output2("output_Q2.txt");
+    ofstream output3("output_Q3.txt");
 
     Matrix matrix1;
     Matrix matrix2; 
@@ -97,6 +102,41 @@ int main(){
     matrix1.linear_search();
     matrix2.linear_search();
 
+
+    // output for Q1.1
+    output1_1 << "Matrix 1: \n";
+    if(matrix1.target_row == -1){
+        output1_1 << "first value is not repeated";
+    }
+    else{
+        output1_1 << "first value reappears at row " << matrix1.target_row << endl; 
+    }
+    output1_1 << "max: " << matrix1.max << " at row " << matrix1.max_row << endl;
+    output1_1 << "min: " << matrix1.min << " at row " << matrix1.min_row << endl;
+
+    // output for Q1.2 
+    output1_2 << "Matrix 2: \n";
+    if(matrix2.target_row == -1){
+        output1_2 << "first value is not repeated";
+    }
+    else{
+        output1_2 << "first value reappears at row " << matrix2.target_row << endl; 
+    }
+    output1_2 << "max: " << matrix2.max << " at row " << matrix2.max_row << endl;
+    output1_2 << "min: " << matrix2.min << " at row " << matrix2.min_row << endl;
+
+    // output for Q2
+    output2 << "sum of matrix 1 and matrix 2: \n";
+    sum_mat1_mat2.print_mat(output2);
+
+    // output for Q3
+    output3 << "product of matrix 1 and matrix 2 \n";
+    mult_mat1_mat2.print_mat(output3);
+
+    
+    // THE FOLLOWING CODE WAS USED TO PRINT TO TERMINAL FOR TROUBLESHOOTING AND VERIFYING RESULTS
+
+    /*
     cout<<"matrix1: \n";
     matrix1.print_mat();
     cout<<"\n";
@@ -127,7 +167,7 @@ int main(){
     sum_mat1_mat2.print_mat();
     cout<<"\n product of matrix 1 and 2: \n";
     mult_mat1_mat2.print_mat();
-
+    */
     
 
 
