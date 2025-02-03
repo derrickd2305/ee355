@@ -3,6 +3,10 @@ import pickle
 
 class Matrix: 
     def __init__(self, data = None):
+        if data is None:    # used chatgpt to implement this line: prompt was "why am i getting error code int() argument must be a string...  [code]"
+            self.data = np.zeros((10,10), dtype = int)
+        else:
+            self.data = np.array(data, dtype = int)
         self.data = np.array(data, dtype = int)
         self.target_row = -1
         self.max = None
