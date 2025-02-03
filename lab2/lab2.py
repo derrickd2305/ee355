@@ -7,7 +7,6 @@ class Matrix:
             self.data = np.zeros((10,10), dtype = int)
         else:
             self.data = np.array(data, dtype = int)
-        self.data = np.array(data, dtype = int)
         self.target_row = -1
         self.max = None
         self.max_row = None
