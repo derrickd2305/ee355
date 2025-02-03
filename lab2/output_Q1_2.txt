@@ -1,3 +1,4 @@
 Matrix 2: 
-first value is not repeatedmax: 999 at row 2
+first value is not repeated
+max: 999 at row 2
 min: 2 at row 9
