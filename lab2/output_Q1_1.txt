@@ -1,0 +1,4 @@
+Matrix 1: 
+first value reappears at row 9
+max: 988 at row 8
+min: 13 at row 3
