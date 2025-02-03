@@ -15,14 +15,14 @@ class Matrix:
         self.min_row = None
     
     def mat_add(self, mat2):
-        result = Matrix()
+        result = Matrix(None, int)
         for i in range(10):
             for j in range(10):
                 result.data[i][j] = self.data[i][j] + mat2.data[i][j]
         return result
     
     def mat_mult(self, mat2):
-        result = Matrix()
+        result = Matrix(None, int)
         for i in range(10):
             for j in range(10):
                 result.data[i][j] = 0
