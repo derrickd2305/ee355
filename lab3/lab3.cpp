@@ -9,7 +9,7 @@ using namespace std;
 class Matrix {
   public:
     int size;
-    vector<vector<int>> data;
+    vector<vector<int> > data;
 
     bool isPowerOfTwo(int n){
       if(n <= 0){
@@ -73,5 +73,5 @@ int main(){
   matrix2.fillMatrix(file);
 
   matrix1.printMatrix();
-  matrix2.printMatrix()
+  matrix2.printMatrix();
 }
