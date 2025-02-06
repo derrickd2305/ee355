@@ -37,7 +37,7 @@ class Matrix {
     void fillMatrix(istream& file){
       for(int i = 0; i < size; i++){
         for(int j = 0; j < size; j++){
-          file >> matrix[i][j];
+          file >> data[i][j];
         }
       }
     }
