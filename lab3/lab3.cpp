@@ -60,6 +60,11 @@ class Matrix {
 
 int main(){
   ifstream file("input.txt");
+  if (!file) {
+      cerr << "Error opening file!" << endl;
+      return 1;
+  }
+  
   int og_size; 
   file >> og_size;
 
