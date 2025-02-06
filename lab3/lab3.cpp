@@ -50,7 +50,7 @@ class Matrix {
           cout << endl;
       }
     }
-}
+};
 
 
 
