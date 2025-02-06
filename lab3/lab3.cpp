@@ -11,14 +11,10 @@ class Matrix {
     int size;
     vector<vector<int> > data;
 
-    bool isPowerOfTwo(int n){
-      if(n <= 0){
-        return false;
-      }
-      while(n % 2 == 0){
-        n = n/2;
-      }
-      return(n == 1);
+    // constructor
+    Matrix(int og_size){
+      size = modifySize(og_size);
+      data.resize(size, vector<int>(size,0));
     }
 
     int modifySize(int size){
@@ -52,7 +48,15 @@ class Matrix {
     }
 };
 
-
+bool isPowerOfTwo(int n){
+  if(n <= 0){
+    return false;
+  }
+  while(n % 2 == 0){
+    n = n/2;
+  }
+  return(n == 1);
+ }
 
 
 
@@ -64,7 +68,7 @@ int main(){
       cerr << "Error opening file!" << endl;
       return 1;
   }
-  
+
   int og_size; 
   file >> og_size;
 
