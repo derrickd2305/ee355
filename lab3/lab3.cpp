@@ -16,7 +16,7 @@ class Matrix {
     Matrix(int og_size){
       original_size = og_size;
       new_size = modifySize(og_size);
-      data.resize(new_size, vector<int>(size,0));
+      data.resize(new_size, vector<int>(new_size,0));
     }
 
     bool isPowerOfTwo(int n){
