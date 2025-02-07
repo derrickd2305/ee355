@@ -8,13 +8,15 @@ using namespace std;
 
 class Matrix {
   public:
-    int size;
+    int original_size;
+    int new_size;
     vector<vector<int> > data;
 
     // constructor
     Matrix(int og_size){
-      size = modifySize(og_size);
-      data.resize(size, vector<int>(size,0));
+      original_size = og_size;
+      new_size = modifySize(og_size);
+      data.resize(new_size, vector<int>(size,0));
     }
 
     bool isPowerOfTwo(int n){
@@ -41,16 +43,16 @@ class Matrix {
     }
 
     void fillMatrix(istream& file){
-      for(int i = 0; i < size; i++){
-        for(int j = 0; j < size; j++){
+      for(int i = 0; i < original_size; i++){
+        for(int j = 0; j < original_size; j++){
           file >> data[i][j];
         }
       }
     }
 
     void printMatrix() const {
-      for (int i = 0; i < size; i++) {
-          for (int j = 0; j < size; j++) {
+      for (int i = 0; i < new_size; i++) {
+          for (int j = 0; j < new_size; j++) {
               cout << data[i][j] << " ";
           }
           cout << endl;
