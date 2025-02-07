@@ -68,12 +68,12 @@ int main(){
   int og_size; 
   file >> og_size;
 
-  Matrix matrix1(og_size);
-  Matrix matrix2(og_size);
-
+  Matrix matrix1(og_size); 
+  Matrix matrix2(og_size); 
+ 
   matrix1.fillMatrix(file);
   matrix2.fillMatrix(file);
-  
+
 
   matrix1.printMatrix();
   matrix2.printMatrix();
