@@ -17,6 +17,16 @@ class Matrix {
       data.resize(size, vector<int>(size,0));
     }
 
+    bool isPowerOfTwo(int n){
+      if(n <= 0){
+        return false;
+      }
+      while(n % 2 == 0){
+        n = n/2;
+      }
+      return(n == 1);
+    }
+
     int modifySize(int size){
       int modified_size = 1;
       if( isPowerOfTwo(size) == false){
@@ -48,16 +58,6 @@ class Matrix {
     }
 };
 
-bool isPowerOfTwo(int n){
-  if(n <= 0){
-    return false;
-  }
-  while(n % 2 == 0){
-    n = n/2;
-  }
-  return(n == 1);
- }
-
 int main(){
   ifstream file("input.txt");
   if (!file) {
@@ -68,9 +68,9 @@ int main(){
   int og_size; 
   file >> og_size;
 
-  Matrix matrix1(og_size); 
-  Matrix matrix2(og_size); 
- 
+  Matrix matrix1(og_size);
+  Matrix matrix2(og_size);
+
   matrix1.fillMatrix(file);
   matrix2.fillMatrix(file);
 
