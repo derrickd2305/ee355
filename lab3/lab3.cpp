@@ -58,10 +58,6 @@ bool isPowerOfTwo(int n){
   return(n == 1);
  }
 
-
-
-
-
 int main(){
   ifstream file("input.txt");
   if (!file) {
@@ -72,11 +68,8 @@ int main(){
   int og_size; 
   file >> og_size;
 
-  Matrix matrix1;
-  Matrix matrix2;
-
-  matrix1.size = og_size;
-  matrix2.size = og_size;
+  Matrix matrix1(og_size);
+  Matrix matrix2(og_size);
 
   matrix1.fillMatrix(file);
   matrix2.fillMatrix(file);
