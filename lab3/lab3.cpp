@@ -182,7 +182,7 @@ class Matrix {
         }
 
         // strassen calculation: defining 7 new matrices
-        Matrix M1 = strassen(matAdd(A11, A22, half), matAdd(B11+B22, half), half);
+        Matrix M1 = strassen(matAdd(A11, A22, half), matAdd(B11,B22, half), half);
         Matrix M2 = strassen(matAdd(A21, A22, half), B11, half);
         Matrix M3 = strassen(A11, matSub(B12, B22, half), half);
         Matrix M4 = strassen(A22, matSub(B12,B22,half), half);
@@ -233,6 +233,6 @@ int main(){
   matrix3.printMatrix();
 
   // calculating matrix1 * matrix2 using straussen's method
-  Matrix matrix4 = strassen(matrix1, matrix2, matrix1.new_size);
+  Matrix matrix4 = Matrix::strassen(matrix1, matrix2, matrix1.new_size);
   matrix3.printMatrix();
 }
