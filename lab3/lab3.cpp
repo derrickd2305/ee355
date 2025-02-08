@@ -55,10 +55,10 @@ class Matrix {
       }
     }
 
-    void printMatrix() const {
+    void printMatrix(istream& file){
       for (int i = 0; i < new_size; i++) {
           for (int j = 0; j < new_size; j++) {
-              cout << data[i][j] << " ";
+              file << data[i][j] << " ";
           }
           cout << endl;
       }
@@ -215,6 +215,9 @@ class Matrix {
 int main(){
   // open text file
   ifstream file("input.txt");
+  ofstream output1("output_m1.txt");
+  ofstream output2("output_m2.txt");
+  ofstream output3("output_q3.txt");
 
   // read matrix size from text file
   int og_size; 
@@ -237,15 +240,16 @@ int main(){
   start1 = clock();
   Matrix matrix3 = Matrix::divAndConq(matrix1, matrix2, matrix1.new_size);
   end1 = clock();
-  int time1 = start1 - end1;
-  matrix3.printMatrix();
-  cout << time1;
+  matrix3.printMatrix(output1);
 
   // calculating matrix1 * matrix2 using straussen's method
   start2 = clock();
   Matrix matrix4 = Matrix::strassen(matrix1, matrix2, matrix1.new_size);
   end2 = clock();
+  matrix4.printMatrix(output2);
+
+  // outputting times
+  int time1 = start1 - end1;
   int time2 = start2-end2;
-  matrix3.printMatrix();
-  cout << time2;
+  output3 << time1 << " " << time2;
 }
