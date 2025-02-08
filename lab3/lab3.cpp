@@ -12,13 +12,14 @@ class Matrix {
     int new_size;
     vector<vector<int> > data;
 
-    // constructor
+    // constructor to change size of matrix on declaration, fills the intial matrix with zeros
     Matrix(int og_size){
       original_size = og_size;
       new_size = modifySize(og_size);
       data.resize(new_size, vector<int>(new_size,0));
     }
 
+    // helper function to check if the size is a power of two
     bool isPowerOfTwo(int n){
       if(n <= 0){
         return false;
@@ -29,6 +30,7 @@ class Matrix {
       return(n == 1);
     }
 
+    // changing size of matrix to be power of two
     int modifySize(int size){
       int modified_size = 1;
       if( isPowerOfTwo(size) == false){
@@ -42,6 +44,7 @@ class Matrix {
       return modified_size;
     }
 
+    // read data from input.txt and fill matrices
     void fillMatrix(istream& file){
       for(int i = 0; i < original_size; i++){
         for(int j = 0; j < original_size; j++){
@@ -59,6 +62,7 @@ class Matrix {
       }
     }
 
+    // matrix addition helper function
     static Matrix matAdd(Matrix A, Matrix B, int size){
       Matrix C(size);
       for(int i = 0; i < size; i++){
@@ -69,6 +73,18 @@ class Matrix {
       return C;
     }
 
+    // matrix subtraction helper function
+    static Matrix matSub(Matrix A, Matrix B, int size){
+      Matrix C(size);
+      for(int i = 0; i < size; i++){
+        for(int j = 0; j < size; j++){
+          C.data[i][j] = A.data[i][j] - B.data[i][j];
+        }
+      }
+      return C;
+    }
+
+    // Q1: Divide and conquer method of matrix multiplication
     static Matrix divAndConq(Matrix A, Matrix B, int size){
       Matrix C(size);
       // case 1: the matrix is a single element and no division necessary
@@ -126,18 +142,83 @@ class Matrix {
 
       return C;
     }
+
+    // Q2: Strassen's Method (note: case 1 and 2 are exact same, parts of case 3 are the exact same)
+    static Matrix strassen(Matrix A, Matrix B, int size){
+      Matrix C(size);
+      // case 1: the matrix is a single element and no division necessary
+      if( size == 1){
+        C.data[0][0] = A.data[0][0] * B.data[0][0];
+      }
+      // case 2: the matrix has either been divided as small as possible or was already a 2x2
+      else if( size == 2){
+        for(int i = 0; i < size; i++){
+          for(int j = 0; j < size; j++){
+            for(int k = 0; k < size; k++){
+              C.data[i][j] += A.data[i][k] * B.data[k][j];
+            }
+          }
+        }
+      }
+      // case 3: the matrix is larger and must be divided into smaller submatrices and multiplied recursively
+      else{
+        // creating submatrices with dimensions half as large as the original matrix
+        int half = size/2;
+        Matrix A11(half), A12(half), A21(half), A22(half), B11(half), B12(half), B21(half), B22(half);
+
+        // loading data from original matrix into smaller matrices
+        for(int i = 0; i < half; i++){
+          for (int j = 0; j < half; j++){
+            A11.data[i][j] = A.data[i][j];
+            A12.data[i][j] = A.data[i][j+half];
+            A21.data[i][j] = A.data[i+half][j];
+            A22.data[i][j] = A.data[i+half][j+half];
+
+            B11.data[i][j] = B.data[i][j];
+            B12.data[i][j] = B.data[i][j+half];
+            B21.data[i][j] = B.data[i+half][j];
+            B22.data[i][j] = B.data[i+half][j+half];
+          }
+        }
+
+        // strassen calculation: defining 7 new matrices
+        Matrix M1 = strassen(matAdd(A11, A22, half), matAdd(B11+B22, half), half);
+        Matrix M2 = strassen(matAdd(A21, A22, half), B11, half);
+        Matrix M3 = strassen(A11, matSub(B12, B22, half), half);
+        Matrix M4 = strassen(A22, matSub(B12,B22,half), half);
+        Matrix M5 = strassen(matAdd(A11,A12,half), B22, half);
+        Matrix M6 = strassen(matSub(A21, A11, half), matAdd(B11,B12,half), half);
+        Matrix M7 = strassen(matSub(A12,A22,half), matAdd(B21,B22,half), half);
+
+        // strassen calculation calculating target matrix C
+        Matrix C11 = matSub(matAdd(matAdd(M1, M4, half), M7, half), M5, half);
+        Matrix C12 = matAdd(M3, M5, half);
+        Matrix C21 = matAdd(M2, M4, half);
+        Matrix C22 = matSub(matAdd(matAdd(M1, M3, half), M6, half), M2, half);
+
+        // combing target matrix's submatrices
+        for(int i = 0; i < half; i++){
+          for(int j = 0; j < half; j++){
+            C.data[i][j] = C11.data[i][j];
+            C.data[i][j + half] = C12.data[i][j];
+            C.data[i+half][j] = C21.data[i][j];
+            C.data[i+half][j+half] = C22.data[i][j];
+          }
+        }
+      }
+      return C;
+    }
 };
 
 int main(){
+  // open text file
   ifstream file("input.txt");
-  if (!file) {
-      cerr << "Error opening file!" << endl;
-      return 1;
-  }
 
+  // read matrix size from text file
   int og_size; 
   file >> og_size;
 
+  // allocating memory for matrices, then reading the data from text file
   Matrix matrix1(og_size);
   Matrix matrix2(og_size);
 
@@ -147,7 +228,11 @@ int main(){
   matrix1.printMatrix();
   matrix2.printMatrix();
 
+  // calculating matrix1 * matrix2 using the divide and conquer method
   Matrix matrix3 = Matrix::divAndConq(matrix1, matrix2, matrix1.new_size);
+  matrix3.printMatrix();
 
+  // calculating matrix1 * matrix2 using straussen's method
+  Matrix matrix4 = strassen(matrix1, matrix2, matrix1.new_size);
   matrix3.printMatrix();
 }
