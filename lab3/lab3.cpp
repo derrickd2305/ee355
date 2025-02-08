@@ -230,9 +230,6 @@ int main(){
   matrix1.fillMatrix(file);
   matrix2.fillMatrix(file);
 
-  matrix1.printMatrix();
-  matrix2.printMatrix();
-
   // variables used to time both methods
   time_t start1, end1, start2, end2;
 
