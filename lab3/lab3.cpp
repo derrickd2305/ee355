@@ -238,12 +238,14 @@ int main(){
   start1 = clock();
   Matrix matrix3 = Matrix::divAndConq(matrix1, matrix2, matrix1.new_size);
   end1 = clock();
+  matrix3.original_size = og_size;
   matrix3.printMatrix(output1);
 
   // calculating matrix1 * matrix2 using straussen's method
   start2 = clock();
   Matrix matrix4 = Matrix::strassen(matrix1, matrix2, matrix1.new_size);
   end2 = clock();
+  matrix4.original_size = og_size;
   matrix4.printMatrix(output2);
 
   // outputting times
