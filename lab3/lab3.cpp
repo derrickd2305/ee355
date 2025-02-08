@@ -66,7 +66,7 @@ class Matrix {
     }
 
     // matrix addition helper function
-    static Matrix matAdd(Matrix A, Matrix B, int size){
+    static Matrix matAdd( const Matrix& A, const Matrix& B, int size){
       Matrix C(size);
       for(int i = 0; i < size; i++){
         for(int j = 0; j < size; j++){
@@ -77,7 +77,7 @@ class Matrix {
     }
 
     // matrix subtraction helper function
-    static Matrix matSub(Matrix A, Matrix B, int size){
+    static Matrix matSub(const Matrix& A, const Matrix& B, int size){
       Matrix C(size);
       for(int i = 0; i < size; i++){
         for(int j = 0; j < size; j++){
@@ -194,10 +194,10 @@ class Matrix {
         Matrix M7 = strassen(matSub(A12,A22,half), matAdd(B21,B22,half), half);
 
         // strassen calculation calculating target matrix C
-        Matrix C11 = matSub(matAdd(matAdd(M1, M4, half), M7, half), M5, half);
+        Matrix C11 = matAdd(matSub(matAdd(M1, M4, half), M5, half), M7, half);
         Matrix C12 = matAdd(M3, M5, half);
         Matrix C21 = matAdd(M2, M4, half);
-        Matrix C22 = matSub(matAdd(matAdd(M1, M3, half), M6, half), M2, half);
+        Matrix C22 = matAdd(matSub(matAdd(M1, M3, half), M6, half), M2, half);
 
         // combing target matrix's submatrices
         for(int i = 0; i < half; i++){
