@@ -59,7 +59,7 @@ class Matrix {
       }
     }
 
-    static Matrix matAdd(Matrix &A, Matrix &B, int size){
+    static Matrix matAdd(Matrix A, Matrix B, int size){
       Matrix C(size);
       for(int i = 0; i < size; i++){
         for(int j = 0; j < size; j++){
@@ -69,7 +69,7 @@ class Matrix {
       return C;
     }
 
-    static Matrix divAndConq(Matrix &A, Matrix &B, int size){
+    static Matrix divAndConq(Matrix A, Matrix B, int size){
       Matrix C(size);
       // case 1: the matrix is a single element and no division necessary
       if( size == 1){
@@ -116,10 +116,10 @@ class Matrix {
         // recombine the submatrices
         for(int i = 0; i < half; i++){
           for(int j = 0; j < half; j++){
-            C.data[i][j] = C11[i][j];
-            C.data[i][j + half] = C12[i][j];
-            C.data[i+half][j] = C21[i][j];
-            C.data[i+half][j+half] = C22[i][j];
+            C.data[i][j] = C11.data[i][j];
+            C.data[i][j + half] = C12.data[i][j];
+            C.data[i+half][j] = C21.data[i][j];
+            C.data[i+half][j+half] = C22.data[i][j];
           }
         }
       }
@@ -147,7 +147,7 @@ int main(){
   matrix1.printMatrix();
   matrix2.printMatrix();
 
-  Matrix matrix3 = Matrix.divAndConq(matrix1, matrix2, matrix1.new_size);
+  Matrix matrix3 = Matrix::divAndConq(matrix1, matrix2, matrix1.new_size);
 
   matrix3.printMatrix();
 }
