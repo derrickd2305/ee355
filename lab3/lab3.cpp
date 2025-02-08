@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <time.h>
+
 using namespace std;
 
 // used the following website for vectors: https://www.geeksforgeeks.org/2d-vector-in-cpp-with-user-defined-size/
@@ -228,11 +230,22 @@ int main(){
   matrix1.printMatrix();
   matrix2.printMatrix();
 
+  // variables used to time both methods
+  time_t start1, end1, start2, end2;
+
   // calculating matrix1 * matrix2 using the divide and conquer method
+  start1 = clock();
   Matrix matrix3 = Matrix::divAndConq(matrix1, matrix2, matrix1.new_size);
+  end1 = clock();
+  int time1 = start1 - end1;
   matrix3.printMatrix();
+  cout << time1;
 
   // calculating matrix1 * matrix2 using straussen's method
+  start2 = clock();
   Matrix matrix4 = Matrix::strassen(matrix1, matrix2, matrix1.new_size);
+  end2 = clock();
+  int time2 = start2-end2;
   matrix3.printMatrix();
+  cout << time2;
 }
