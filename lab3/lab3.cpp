@@ -55,12 +55,13 @@ class Matrix {
       }
     }
 
-    void printMatrix(istream& file){
-      for (int i = 0; i < new_size; i++) {
-          for (int j = 0; j < new_size; j++) {
+    // output matrix data into text files using fstream
+    void printMatrix(ostream& file){
+      for (int i = 0; i < original_size; i++) {
+          for (int j = 0; j < original_size; j++) {
               file << data[i][j] << " ";
           }
-          cout << endl;
+          file << endl;
       }
     }
 
@@ -246,7 +247,7 @@ int main(){
   matrix4.printMatrix(output2);
 
   // outputting times
-  int time1 = start1 - end1;
-  int time2 = start2-end2;
+  int time1 = end1 - start1;
+  int time2 = end2 - start2;
   output3 << time1 << " " << time2;
 }
