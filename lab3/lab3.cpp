@@ -188,7 +188,7 @@ class Matrix {
         Matrix M1 = strassen(matAdd(A11, A22, half), matAdd(B11,B22, half), half);
         Matrix M2 = strassen(matAdd(A21, A22, half), B11, half);
         Matrix M3 = strassen(A11, matSub(B12, B22, half), half);
-        Matrix M4 = strassen(A22, matSub(B12,B22,half), half);
+        Matrix M4 = strassen(A22, matSub(B21,B11,half), half);
         Matrix M5 = strassen(matAdd(A11,A12,half), B22, half);
         Matrix M6 = strassen(matSub(A21, A11, half), matAdd(B11,B12,half), half);
         Matrix M7 = strassen(matSub(A12,A22,half), matAdd(B21,B22,half), half);
