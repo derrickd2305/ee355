@@ -10,8 +10,8 @@ class Person {
             this->name = newName;
             this->age = newAge;
         }
-        virtual void displayPersonInfo(){
-            cout<<"Person: "<<name<<endl<<"age: "<<age<<endl;
+        virtual void displayPersonInfo(ostream& file){
+            file<<"Person: "<<name<<endl<<"age: "<<age<<endl;
         }
         virtual void displayInfo(){}
         virtual void introduce(){}
@@ -30,14 +30,15 @@ class Student : public Person {
         }
         int ID;
         int GPA;
-        void displayPersonInfo(){
-            cout<<"Public Inheritance: Person: "<<name<<", Age: "<<age;
+        string class = "Student";
+        void displayPersonInfo(ostream& file){
+            file<<"Public Inheritance: Person: "<<name<<", Age: "<<age<<endl;
         }
-        void displayInfo(){
-            cout<<"Student: "<<name<<", Age: "<<age<<", ID: "<<ID<<", GPA: "<<GPA<<endl;
+        void displayInfo(ostream& file){
+            file<<"Student: "<<name<<", Age: "<<age<<", ID: "<<ID<<", GPA: "<<GPA<<endl;
         }
-        void introduce(){
-            cout<<"I am a student. My name is " << name << "."<< endl;
+        void introduce(ostream& file){
+            file<<"I am a student. My name is " << name << "."<< endl;
         }
 };
 
@@ -51,8 +52,8 @@ class StudentPrivate : private Person {
         }
         int ID;
         float GPA;
-        void displayPersonInfo(){
-            cout<<"Private Inheritance: Person: "<<name<<", Age: "<<age;
+        void displayPersonInfo(ostream& file){
+            file<<"Private Inheritance: Person: "<<name<<", Age: "<<age<<endl;
         }
 };
 
@@ -66,14 +67,17 @@ class Teacher : public Person {
         }
         string subject;
         int yearsOfExp;
-        void displayPersonInfo(){
-            cout<<"Public Inheritance: Person: "<<name<<", Age: "<<age;
+        string class = "Teacher";
+        /*
+        void displayPersonInfo(ostream& file){
+            file<<"Public Inheritance: Person: "<<name<<", Age: "<<age<<endl;
         }
-        void displayInfo(){
-            cout<<"Teacher: "<<name<<", Age: "<<age<<", Subject: "<<subject<<", Experience: "<<yearsOfExp<<" years"<<endl;
+            */
+        void displayInfo(ostream& file){
+            file<<"Teacher: "<<name<<", Age: "<<age<<", Subject: "<<subject<<", Experience: "<<yearsOfExp<<" years"<<endl;
         }
-        void introduce(){
-            cout<<"I am a teacher. My name is "<<name<<"."<<endl;
+        void introduce(ostream& file){
+            file<<"I am a teacher. My name is "<<name<<"."<<endl;
         }
 };
 
@@ -119,15 +123,21 @@ int main(){
         }
         else{
             cout<<"something wrong with type";
+            return 0;
         }
     }
 
     // iterating through the list we made to print to respective output files
     for(int i = 0; i < count; i++){
-        people[i]->displayPersonInfo();
-        people[i]->displayInfo();
+        if(people[i]->class == "Student"){
+            people[i]->displayPersonInfo(output1);
+        }
+        people[i]->displayInfo(output2);
+        people[i]->introduce(output3);
     }
     //StudentPrivate student2;
     //student2.setPersonInfo("derrick", 19);
     //student2.displayPersonInfo();
+
+    return 0;
 }
