@@ -14,8 +14,8 @@ class Person {
         virtual void displayPersonInfo(ostream& file){
             file<<"Person: "<<name<<endl<<"age: "<<age<<endl;
         }
-        virtual void displayInfo(){}
-        virtual void introduce(){}
+        virtual void displayInfo(ostream& file){}
+        virtual void introduce(ostream& file){}
     protected:
         string name;
         int age;
