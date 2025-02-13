@@ -34,13 +34,18 @@ class Teacher : public Person {
         void displayPersonInfo(){
             cout<<"Teacher: "<<name<<" Age: "<<age<<endl;
         }
-}
+};
 
 int main(){
     Student student1;
     student1.setPersonInfo("derrick", 19);
-    StudentPrivate student2;
-    student2.setPersonInfo("derrick", 19);
     student1.displayPersonInfo();
+    
+    //StudentPrivate student2;
+    //student2.setPersonInfo("derrick", 19);
     //student2.displayPersonInfo();
+    
+    Teacher teacher1;
+    teacher1.setPersonInfo("Mr. Kim", 91);
+    teacher1.displayPersonInfo();
 }
