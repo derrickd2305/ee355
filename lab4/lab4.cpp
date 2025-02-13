@@ -6,15 +6,24 @@ using namespace std;
 
 class Person {
     public:
+        // constructor
         void setPersonInfo(string newName, int newAge){
-            this->name = newName;
-            this->age = newAge;
+            name = newName;
+            age = newAge;
         }
+        
+        // virtual function for Q1
         virtual void displayPersonInfo(ostream& file){
             file<<"Person: "<<name<<endl<<"age: "<<age<<endl;
         }
+
+        // pure virtual function for Q2
         virtual void displayInfo(ostream& file){}
-        virtual void introduce(ostream& file){}
+
+        // virtual function for Q3
+        virtual void introduce(ostream& file){
+            file<<"I am a person. My name is "<<name<<".\n";
+        }
         
     protected:
         string name;
@@ -30,21 +39,23 @@ class Student : public Person {
             ID = newID;
             GPA = newGPA;
         }
+
+        // unique variables
         int ID;
         float GPA;
 
         // output for Q1
-        void displayPersonInfo(ostream& file){
+        void displayPersonInfo(ostream& file) override {
             file<<"Public Inheritance: Person: "<<name<<", Age: "<<age<<endl;
         }
 
         // output for Q2
-        void displayInfo(ostream& file){
+        void displayInfo(ostream& file) override {
             file<<"Student: "<<name<<", Age: "<<age<<", ID: "<<ID<<", GPA: "<<GPA<<endl;
         }
 
         // output for Q3
-        void introduce(ostream& file){
+        void introduce(ostream& file) override {
             file<<"I am a student. My name is " << name << "."<< endl;
         }
 
@@ -60,11 +71,13 @@ class StudentPrivate : private Person {
             ID = newID;
             GPA = newGPA;
         }
+
+        // unique variables
         int ID;
         float GPA;
 
         // Q1: nothing will be outputted because the main function cannot access this private function
-        void displayPersonInfo(ostream& file){
+        void displayPersonInfo(ostream& file) override {
             file<<"Private Inheritance: Person: "<<name<<", Age: "<<age<<endl;
         }
 };
@@ -78,16 +91,18 @@ class Teacher : public Person {
             subject = newSubject;
             yearsOfExp = newYearsOfExp;
         }
+
+        // unique variables
         string subject;
         int yearsOfExp;
         
         // output for Q2
-        void displayInfo(ostream& file){
+        void displayInfo(ostream& file) override {
             file<<"Teacher: "<<name<<", Age: "<<age<<", Subject: "<<subject<<", Experience: "<<yearsOfExp<<" years"<<endl;
         }
 
         // output for Q3
-        void introduce(ostream& file){
+        void introduce(ostream& file) override {
             file<<"I am a teacher. My name is "<<name<<"."<<endl;
         }
 };
@@ -126,6 +141,8 @@ int main(){
 
             // output for Q1
             people[i]->displayPersonInfo(output1);
+
+            // note: we cannot do the same thing using the StudentPrivate class because the method is private, so it is simply omitted from the final code
         }
         else if(type == "Teacher"){
             input >> name;
@@ -141,7 +158,7 @@ int main(){
         }
     }
 
-    // iterating through the list we made to print to respective output files
+    // iterating through the 'people' array to print to respective output files
     for(int i = 0; i < count; i++){
         people[i]->displayInfo(output2);
         people[i]->introduce(output3);
