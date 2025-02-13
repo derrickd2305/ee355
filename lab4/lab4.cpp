@@ -15,9 +15,7 @@ class Person {
         }
         virtual void displayInfo(ostream& file){}
         virtual void introduce(ostream& file){}
-        virtual string getType(){
-            return "Person";
-        }
+        
     protected:
         string name;
         int age;
@@ -25,6 +23,7 @@ class Person {
 
 class Student : public Person {
     public:
+        // constructor
         Student(string newName, int newAge, int newID, float newGPA){
             name = newName;
             age = newAge;
@@ -33,22 +32,28 @@ class Student : public Person {
         }
         int ID;
         float GPA;
+
+        // output for Q1
         void displayPersonInfo(ostream& file){
             file<<"Public Inheritance: Person: "<<name<<", Age: "<<age<<endl;
         }
+
+        // output for Q2
         void displayInfo(ostream& file){
             file<<"Student: "<<name<<", Age: "<<age<<", ID: "<<ID<<", GPA: "<<GPA<<endl;
         }
+
+        // output for Q3
         void introduce(ostream& file){
             file<<"I am a student. My name is " << name << "."<< endl;
         }
-        string getType(){
-            return "Student";
-        }
+
+        
 };
 
 class StudentPrivate : private Person {
     public:
+        // constructor
         StudentPrivate(string newName, int newAge, int newID, float newGPA){
             name = newName;
             age = newAge;
@@ -57,6 +62,8 @@ class StudentPrivate : private Person {
         }
         int ID;
         float GPA;
+
+        // Q1: nothing will be outputted because the main function cannot access this private function
         void displayPersonInfo(ostream& file){
             file<<"Private Inheritance: Person: "<<name<<", Age: "<<age<<endl;
         }
@@ -64,6 +71,7 @@ class StudentPrivate : private Person {
 
 class Teacher : public Person {
     public:
+        // constructor
         Teacher(string newName, int newAge, string newSubject, int newYearsOfExp){
             name = newName;
             age = newAge;
@@ -72,14 +80,15 @@ class Teacher : public Person {
         }
         string subject;
         int yearsOfExp;
+        
+        // output for Q2
         void displayInfo(ostream& file){
             file<<"Teacher: "<<name<<", Age: "<<age<<", Subject: "<<subject<<", Experience: "<<yearsOfExp<<" years"<<endl;
         }
+
+        // output for Q3
         void introduce(ostream& file){
             file<<"I am a teacher. My name is "<<name<<"."<<endl;
-        }
-        string getType(){
-            return "Teacher";
         }
 };
 
@@ -114,6 +123,9 @@ int main(){
             input >> GPA;
 
             people[i] = new Student(name, age, ID, GPA);
+
+            // output for Q1
+            people[i]->displayPersonInfo(output1);
         }
         else if(type == "Teacher"){
             input >> name;
@@ -131,15 +143,9 @@ int main(){
 
     // iterating through the list we made to print to respective output files
     for(int i = 0; i < count; i++){
-        if(people[i]->getType() == "Student"){
-            people[i]->displayPersonInfo(output1);
-        }
         people[i]->displayInfo(output2);
         people[i]->introduce(output3);
     }
-    //StudentPrivate student2;
-    //student2.setPersonInfo("derrick", 19);
-    //student2.displayPersonInfo();
 
     return 0;
 }
