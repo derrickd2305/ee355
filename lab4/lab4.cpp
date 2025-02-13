@@ -6,6 +6,7 @@ using namespace std;
 
 class Person {
     public:
+        string type = "Person";
         void setPersonInfo(string newName, int newAge){
             this->name = newName;
             this->age = newAge;
@@ -30,7 +31,7 @@ class Student : public Person {
         }
         int ID;
         int GPA;
-        string class = "Student";
+        string type = "Student";
         void displayPersonInfo(ostream& file){
             file<<"Public Inheritance: Person: "<<name<<", Age: "<<age<<endl;
         }
@@ -67,7 +68,7 @@ class Teacher : public Person {
         }
         string subject;
         int yearsOfExp;
-        string class = "Teacher";
+        string type = "Teacher";
         /*
         void displayPersonInfo(ostream& file){
             file<<"Public Inheritance: Person: "<<name<<", Age: "<<age<<endl;
@@ -129,7 +130,7 @@ int main(){
 
     // iterating through the list we made to print to respective output files
     for(int i = 0; i < count; i++){
-        if(people[i]->class == "Student"){
+        if(people[i]->type == "Student"){
             people[i]->displayPersonInfo(output1);
         }
         people[i]->displayInfo(output2);
