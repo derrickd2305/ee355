@@ -115,7 +115,7 @@ int main(){
             input >> subject;
             input >> experience;
 
-            people[i] = new Student(name, age, subject, experience);
+            people[i] = new Teacher(name, age, subject, experience);
         }
         else{
             cout<<"something wrong with type";
@@ -124,8 +124,8 @@ int main(){
 
     // iterating through the list we made to print to respective output files
     for(int i = 0; i < count; i++){
-        person->displayPersonInfo();
-        person->displayInfo();
+        people->displayPersonInfo();
+        people->displayInfo();
     }
     //StudentPrivate student2;
     //student2.setPersonInfo("derrick", 19);
