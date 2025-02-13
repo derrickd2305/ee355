@@ -124,8 +124,8 @@ int main(){
 
     // iterating through the list we made to print to respective output files
     for(int i = 0; i < count; i++){
-        people->displayPersonInfo();
-        people->displayInfo();
+        people[i]->displayPersonInfo();
+        people[i]->displayInfo();
     }
     //StudentPrivate student2;
     //student2.setPersonInfo("derrick", 19);
