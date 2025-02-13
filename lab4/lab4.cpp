@@ -6,7 +6,6 @@ using namespace std;
 
 class Person {
     public:
-        string type = "Person";
         void setPersonInfo(string newName, int newAge){
             this->name = newName;
             this->age = newAge;
@@ -16,6 +15,9 @@ class Person {
         }
         virtual void displayInfo(ostream& file){}
         virtual void introduce(ostream& file){}
+        virtual string getType(){
+            return "Person";
+        }
     protected:
         string name;
         int age;
@@ -31,7 +33,6 @@ class Student : public Person {
         }
         int ID;
         float GPA;
-        string type = "Student";
         void displayPersonInfo(ostream& file){
             file<<"Public Inheritance: Person: "<<name<<", Age: "<<age<<endl;
         }
@@ -40,6 +41,9 @@ class Student : public Person {
         }
         void introduce(ostream& file){
             file<<"I am a student. My name is " << name << "."<< endl;
+        }
+        string getType(){
+            return "Student";
         }
 };
 
@@ -68,17 +72,14 @@ class Teacher : public Person {
         }
         string subject;
         int yearsOfExp;
-        string type = "Teacher";
-        /*
-        void displayPersonInfo(ostream& file){
-            file<<"Public Inheritance: Person: "<<name<<", Age: "<<age<<endl;
-        }
-            */
         void displayInfo(ostream& file){
             file<<"Teacher: "<<name<<", Age: "<<age<<", Subject: "<<subject<<", Experience: "<<yearsOfExp<<" years"<<endl;
         }
         void introduce(ostream& file){
             file<<"I am a teacher. My name is "<<name<<"."<<endl;
+        }
+        string getType(){
+            return "Teacher";
         }
 };
 
@@ -130,7 +131,7 @@ int main(){
 
     // iterating through the list we made to print to respective output files
     for(int i = 0; i < count; i++){
-        if(people[i]->type == "Student"){
+        if(people[i]->getType() == "Student"){
             people[i]->displayPersonInfo(output1);
         }
         cout<<people[i]->type<<endl;
