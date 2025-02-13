@@ -45,17 +45,17 @@ class Student : public Person {
         float GPA;
 
         // output for Q1
-        void displayPersonInfo(ostream& file) override {
+        void displayPersonInfo(ostream& file){
             file<<"Public Inheritance: Person: "<<name<<", Age: "<<age<<endl;
         }
 
         // output for Q2
-        void displayInfo(ostream& file) override {
+        void displayInfo(ostream& file){
             file<<"Student: "<<name<<", Age: "<<age<<", ID: "<<ID<<", GPA: "<<GPA<<endl;
         }
 
         // output for Q3
-        void introduce(ostream& file) override {
+        void introduce(ostream& file){
             file<<"I am a student. My name is " << name << "."<< endl;
         }
 
@@ -77,7 +77,7 @@ class StudentPrivate : private Person {
         float GPA;
 
         // Q1: nothing will be outputted because the main function cannot access this private function
-        void displayPersonInfo(ostream& file) override {
+        void displayPersonInfo(ostream& file){
             file<<"Private Inheritance: Person: "<<name<<", Age: "<<age<<endl;
         }
 };
@@ -97,12 +97,12 @@ class Teacher : public Person {
         int yearsOfExp;
         
         // output for Q2
-        void displayInfo(ostream& file) override {
+        void displayInfo(ostream& file){
             file<<"Teacher: "<<name<<", Age: "<<age<<", Subject: "<<subject<<", Experience: "<<yearsOfExp<<" years"<<endl;
         }
 
         // output for Q3
-        void introduce(ostream& file) override {
+        void introduce(ostream& file){
             file<<"I am a teacher. My name is "<<name<<"."<<endl;
         }
 };
