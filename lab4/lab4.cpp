@@ -50,9 +50,6 @@ class StudentPrivate : private Person {
         void displayPersonInfo(){
             cout<<"Private student: "<<name<<" "<<age<<" "<<ID<<" "<<GPA<<endl;
         }
-        void introduce(){
-            cout<<"I am a teacher. My name is "<<name<<"."<<endl;
-        }
 };
 
 class Teacher : public Person {
@@ -67,6 +64,9 @@ class Teacher : public Person {
         int yearsOfExp;
         void displayPersonInfo(){
             cout<<"Teacher: "<<name<<" "<<age<<" "<<subject<<" "<<yearsOfExp<<endl;
+        }
+        void introduce(){
+            cout<<"I am a teacher. My name is "<<name<<"."<<endl;
         }
 };
 
