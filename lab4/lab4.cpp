@@ -13,6 +13,7 @@ class Person {
         virtual void displayPersonInfo(){
             cout<<"name: "<<name<<endl<<"age: "<<age<<endl;
         }
+        virtual void introduce(){}
     protected:
         string name;
         int age;
@@ -31,6 +32,9 @@ class Student : public Person {
         void displayPersonInfo(){
             cout<<"Student: "<<name<<" "<<age<<" "<<ID<<" "<<GPA<<endl;
         }
+        void introduce(){
+            cout<<"I am a student. My name is " << name << "."<< endl;
+        }
 };
 
 class StudentPrivate : private Person {
@@ -45,6 +49,9 @@ class StudentPrivate : private Person {
         float GPA;
         void displayPersonInfo(){
             cout<<"Private student: "<<name<<" "<<age<<" "<<ID<<" "<<GPA<<endl;
+        }
+        void introduce(){
+            cout<<"I am a teacher. My name is "<<name<<"."<<endl;
         }
 };
 
@@ -66,6 +73,7 @@ class Teacher : public Person {
 int main(){
     Student student1("Derrick", 19, 677, 4);
     student1.displayPersonInfo();
+    student1.introduce();
     
     //StudentPrivate student2;
     //student2.setPersonInfo("derrick", 19);
@@ -73,4 +81,5 @@ int main(){
     
     Teacher teacher1("Bob", 45, "EE355", 15);
     teacher1.displayPersonInfo();   
+    teacher1.introduce();
 }
