@@ -134,7 +134,6 @@ int main(){
         if(people[i]->getType() == "Student"){
             people[i]->displayPersonInfo(output1);
         }
-        cout<<people[i]->type<<endl;
         people[i]->displayInfo(output2);
         people[i]->introduce(output3);
     }
