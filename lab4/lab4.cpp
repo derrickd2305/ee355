@@ -28,7 +28,9 @@ class StudentPrivate : private Person {
 
 int main(){
     Student student1;
-    student1.setPersonInfo("derrick", 19)
+    student1.setPersonInfo("derrick", 19);
+    StudentPrivate student2;
+    student2.setPersonInfo("derrick", 19);
     student1.displayPersonInfo();
     //student2.displayPersonInfo();
 }
