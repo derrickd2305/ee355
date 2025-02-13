@@ -11,8 +11,9 @@ class Person {
             this->age = newAge;
         }
         virtual void displayPersonInfo(){
-            cout<<"name: "<<name<<endl<<"age: "<<age<<endl;
+            cout<<"Person: "<<name<<endl<<"age: "<<age<<endl;
         }
+        virtual void displayInfo(){}
         virtual void introduce(){}
     protected:
         string name;
@@ -21,7 +22,7 @@ class Person {
 
 class Student : public Person {
     public:
-        Student(string newName, int newAge, int newID, int newGPA){
+        Student(string newName, int newAge, int newID, float newGPA){
             name = newName;
             age = newAge;
             ID = newID;
@@ -30,7 +31,10 @@ class Student : public Person {
         int ID;
         int GPA;
         void displayPersonInfo(){
-            cout<<"Student: "<<name<<" "<<age<<" "<<ID<<" "<<GPA<<endl;
+            cout<<"Public Inheritance: Person: "<<name<<", Age: "<<age;
+        }
+        void displayInfo(){
+            cout<<"Student: "<<name<<", Age: "<<age<<", ID: "<<ID<<", GPA: "<<GPA<<endl;
         }
         void introduce(){
             cout<<"I am a student. My name is " << name << "."<< endl;
@@ -48,7 +52,7 @@ class StudentPrivate : private Person {
         int ID;
         float GPA;
         void displayPersonInfo(){
-            cout<<"Private student: "<<name<<" "<<age<<" "<<ID<<" "<<GPA<<endl;
+            cout<<"Private Inheritance: Person: "<<name<<", Age: "<<age;
         }
 };
 
@@ -63,7 +67,10 @@ class Teacher : public Person {
         string subject;
         int yearsOfExp;
         void displayPersonInfo(){
-            cout<<"Teacher: "<<name<<" "<<age<<" "<<subject<<" "<<yearsOfExp<<endl;
+            cout<<"Public Inheritance: Person: "<<name<<", Age: "<<age;
+        }
+        void displayInfo(){
+            cout<<"Teacher: "<<name<<", Age: "<<age<<", Subject: "<<subject<<", Experience: "<<yearsOfExp<<" years"<<endl;
         }
         void introduce(){
             cout<<"I am a teacher. My name is "<<name<<"."<<endl;
@@ -71,15 +78,56 @@ class Teacher : public Person {
 };
 
 int main(){
-    Student student1("Derrick", 19, 677, 4);
-    student1.displayPersonInfo();
-    student1.introduce();
-    
+    //opening/creating files for I/O using fstream
+    ifstream input("input.txt");
+    ofstream output1("output_Q1.txt");
+    ofstream output2("output_Q2.txt");
+    ofstream output3("output_Q3.txt");
+
+    // reading number of objects from input.txt
+    int count;
+    input >> count;
+
+    // allocating memory
+    Person* people[count];
+    string type;
+    string name;
+    int age;
+    int ID;
+    string subject;
+    int experience;
+    float GPA;
+
+    // reading through file and creating new student/teacher based on the first word of each line
+    for(int i = 0; i < count; i++){
+        input >> type;
+        if(type == "Student"){
+            input >> name;
+            input >> age;
+            input >> ID;
+            input >> GPA;
+
+            people[i] = new Student(name, age, ID, GPA);
+        }
+        else if(type == "Teacher"){
+            input >> name;
+            input >> age;
+            input >> subject;
+            input >> experience;
+
+            people[i] = new Student(name, age, subject, experience);
+        }
+        else{
+            cout<<"something wrong with type";
+        }
+    }
+
+    // iterating through the list we made to print to respective output files
+    for(int i = 0; i < count; i++){
+        person->displayPersonInfo();
+        person->displayInfo();
+    }
     //StudentPrivate student2;
     //student2.setPersonInfo("derrick", 19);
     //student2.displayPersonInfo();
-    
-    Teacher teacher1("Bob", 45, "EE355", 15);
-    teacher1.displayPersonInfo();   
-    teacher1.introduce();
 }
