@@ -64,15 +64,13 @@ class Teacher : public Person {
 };
 
 int main(){
-    Student student1;
-    student1("Derrick", 19, 677, 4.0);
+    Student student1("Derrick", 19, 677, 4);
     student1.displayPersonInfo();
     
     //StudentPrivate student2;
     //student2.setPersonInfo("derrick", 19);
     //student2.displayPersonInfo();
     
-    Teacher teacher1;
-    teacher1("Bob", 45, "EE355", 15);
+    Teacher teacher1("Bob", 45, "EE355", 15);
     teacher1.displayPersonInfo();   
 }
