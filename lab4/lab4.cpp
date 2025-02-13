@@ -30,7 +30,7 @@ class Student : public Person {
             GPA = newGPA;
         }
         int ID;
-        int GPA;
+        float GPA;
         string type = "Student";
         void displayPersonInfo(ostream& file){
             file<<"Public Inheritance: Person: "<<name<<", Age: "<<age<<endl;
@@ -133,6 +133,7 @@ int main(){
         if(people[i]->type == "Student"){
             people[i]->displayPersonInfo(output1);
         }
+        cout<<people[i]->type<<endl;
         people[i]->displayInfo(output2);
         people[i]->introduce(output3);
     }
