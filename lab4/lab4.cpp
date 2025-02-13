@@ -10,7 +10,7 @@ class Person {
             this->name = newName;
             this->age = newAge;
         }
-        void displayPersonInfo(){
+        virtual void displayPersonInfo(){
             cout<<"name: "<<name<<endl<<"age: "<<age<<endl;
         }
     protected:
@@ -19,12 +19,22 @@ class Person {
 };
 
 class Student : public Person {
-
+    public:
+        void displayPersonInfo(){
+            cout<<"Student: "<<name<<" Age: "<<age<<endl;
+        }
 };
 
 class StudentPrivate : private Person {
 
 };
+
+class Teacher : public Person {
+    public:
+        void displayPersonInfo(){
+            cout<<"Teacher: "<<name<<" Age: "<<age<<endl;
+        }
+}
 
 int main(){
     Student student1;
