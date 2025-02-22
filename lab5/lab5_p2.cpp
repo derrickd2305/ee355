@@ -27,7 +27,9 @@ void swapByReference(int &a, int &b) {
 
 // Function to modify array: Double each value (using pass-by-pointer)
 void doubleValues(int* arr, int size) {
-    
+    for(int i = 0; i < size; i++){
+        *(arr+i) *= 2;
+    }
 }
 
 // Function to compute sum and product using pass-by-reference
@@ -46,7 +48,8 @@ int main(int argc, char* argv[]) {
     
     // Convert command-line arguments to integers
     int* array = new int[argc];
-    for(int i = 0; i < argc-1; i++){
+    int size = argc - 1;
+    for(int i = 0; i < sizw; i++){
         array[i] = atoi(argv[i+1]);
     }
 
@@ -55,7 +58,7 @@ int main(int argc, char* argv[]) {
 
     // Print original array
     output << "Original Numbers: ";
-    for(int i = 0; i < argc-1; i++){
+    for(int i = 0; i < size; i++){
         output << array[i] << " ";
     }
     output << endl << endl;
@@ -71,13 +74,18 @@ int main(int argc, char* argv[]) {
     
     // Demonstrate pass-by-reference (modifies values)
     swapByReference(a, b);
-    output << endl << "Pass-by-Reference Swap (Successful):"<< endl;
+    output << "Pass-by-Reference Swap (Successful):"<< endl;
     output << "\t" << "Swap("<<a<<", "<<b<<") -> a = "<<a<<", b = "<< b << endl << endl;
 
     // Modify array (double values using pointer)
-    // doubleValues(); // Fill in the arguments
+    doubleValues(array, size); // Fill in the arguments
+    output << "Pass-by-Pointer Modification:" << endl;
+    output << "\t" << "Doubled Values: ";
+    for(int i = 0; i < size; i++){
+        output << array[i] << " ";
+    }
+    output << endl << endl;
     
-
     // Compute sum and product
     // computeSumAndProduct(); // Fill in the arguments
     
