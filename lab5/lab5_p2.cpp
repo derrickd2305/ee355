@@ -42,6 +42,26 @@ void computeSumAndProduct(int* arr, int size, int &sum, int &product) {
 
 // Function to reverse an array using pointers (without array indexing)
 void reverseArray(int* arr, int size) {
+    if(size == 1 || size = 0){
+        break;
+    }
+    else{
+        int temp;
+        if(size%2 == 0){
+            for(int i = 0; i < size/2; i++){
+                temp = *(arr+i);
+                *arr = *(arr+size-i-1);
+                *(arr+size-i-1) = temp;
+            }
+        }
+        else{
+            for(int i = 0; i < (size-1)/2; i++){
+                temp = *(arr+i);
+                *arr = *(arr+size-i-1);
+                *(arr+size-i-1) = temp;
+            }
+        }
+    }
     
 }
 
@@ -95,7 +115,11 @@ int main(int argc, char* argv[]) {
     output << "Product of Numbers: " << product << endl;
     
     // Reverse array
-    // reverseArray(); // Fill in the arguments
+    reverseArray(array, size); // Fill in the arguments
+    output << "Reversed Order: ";
+    for(int i = 0; i < size; i++){
+
+    }
     
     delete [] array;
     return 0;
