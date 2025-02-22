@@ -58,8 +58,8 @@ int main()
     // computing a prefix sum array using only pointers
     int sum = 0;
     for(int i = 0; i < count; i++){
-        *(ptr+i) += sum;
         sum += *(ptr+i);
+        *(ptr+i) = sum;
     }
 
     output << "prefix sum array:\n";
