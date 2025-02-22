@@ -42,7 +42,7 @@ void computeSumAndProduct(int* arr, int size, int &sum, int &product) {
 
 // Function to reverse an array using pointers (without array indexing)
 void reverseArray(int* arr, int size) {
-    if(size == 1 || size = 0){
+    if(size == 1 || size == 0){
         break;
     }
     else{
