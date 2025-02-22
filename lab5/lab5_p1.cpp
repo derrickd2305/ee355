@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+using namespace std;
 
 void print_array(int* ptr, int count, ostream &file){
     for(int i = 0; i < count; i++){
