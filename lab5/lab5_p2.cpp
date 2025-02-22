@@ -34,7 +34,10 @@ void doubleValues(int* arr, int size) {
 
 // Function to compute sum and product using pass-by-reference
 void computeSumAndProduct(int* arr, int size, int &sum, int &product) {
-    
+    for(int i = 0; i < size; i++){
+        sum += *(arr+i);
+        product *= *(arr+i);
+    }
 }
 
 // Function to reverse an array using pointers (without array indexing)
@@ -67,15 +70,14 @@ int main(int argc, char* argv[]) {
     extractCommandLineArgs(argc, argv, output);
 
     // Demonstrate pass-by-value (no effect)
-    int a = array[0], b = array[1];
-    swapByValue(a, b);
+    swapByValue(array[0], array[1]);
     output << endl << "Pass-by-Value Swap (No Effect):"<< endl;
-    output << "\t" << "Swap("<<a<<", "<<b<<") -> a = "<<a<<", b = "<< b << " (Unchanged)" << endl << endl;
+    output << "\t" << "Swap("<<array[0]<<", "<<array[1]<<") -> a = "<<array[0]<<", b = "<< array[1] << " (Unchanged)" << endl << endl;
     
     // Demonstrate pass-by-reference (modifies values)
-    swapByReference(a, b);
+    swapByReference(array[0], array[1]);
     output << "Pass-by-Reference Swap (Successful):"<< endl;
-    output << "\t" << "Swap("<<a<<", "<<b<<") -> a = "<<a<<", b = "<< b << endl << endl;
+    output << "\t" << "Swap("<<array[0]<<", "<<array[1]<<") -> a = "<<array[0]<<", b = "<< array[1] << endl << endl;
 
     // Modify array (double values using pointer)
     doubleValues(array, size); // Fill in the arguments
@@ -87,7 +89,10 @@ int main(int argc, char* argv[]) {
     output << endl << endl;
     
     // Compute sum and product
-    // computeSumAndProduct(); // Fill in the arguments
+    int sum = 0, product = 1;
+    computeSumAndProduct(array, size, sum, product); // Fill in the arguments
+    output << "Sum of Numbers: " << sum << endl;
+    output << "Product of Numbers: " << product << endl;
     
     // Reverse array
     // reverseArray(); // Fill in the arguments
