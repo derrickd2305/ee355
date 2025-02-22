@@ -17,8 +17,8 @@ int main()
     // reading values from input.txt and storing in an array using pointers
     int count;
     input >> count;
-    int* og_array = new int[count];
-    int* ptr = og_array;
+    int* array = new int[count];
+    int* ptr = array;
 
     for(int i = 0; i < count; i++){
         input >> *(ptr + i);
@@ -38,7 +38,7 @@ int main()
         }
     }
     
-    output << "evens doubled, odds squared \n";
+    output << "evens doubled, odds squared: \n";
     print_array(ptr, count, output);
 
     // finding and printing the maximum and minimum values using pointers
@@ -61,7 +61,7 @@ int main()
         sum += *(ptr+i);
     }
 
-    output << "prefix sum array\n";
+    output << "prefix sum array:\n";
     print_array(ptr, count, output);
 
     delete [] array;
