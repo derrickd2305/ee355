@@ -43,7 +43,7 @@ int main()
     print_array(ptr, count, output);
 
     // finding and printing the maximum and minimum values using pointers
-    int max = 0, min = 0;
+    int max = *ptr, min = *ptr;
     for(int i = 0; i < count; i++){
         if(max < *(ptr+i)){
             max = *(ptr+i);
