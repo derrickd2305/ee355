@@ -13,7 +13,9 @@ void extractCommandLineArgs(int argc, char** argv, ofstream &outputFile) {
 
 // Function to swap two integers using pass-by-value (no effect)
 void swapByValue(int a, int b) {
-    
+    int temp = a;
+    a = b;
+    b = temp;
 }
 
 // Function to swap two integers using pass-by-reference (modifies values)
@@ -54,14 +56,16 @@ int main(int argc, char* argv[]) {
     for(int i = 0; i < argc-1; i++){
         output << array[i] << " ";
     }
-    output << endl;
+    output << endl << endl;
 
     // Extract command-line arguments using pointer-to-pointer
-    extractCommandLineArgs(argc, argv, output); // Fill in the arguments
+    extractCommandLineArgs(argc, argv, output);
 
     // Demonstrate pass-by-value (no effect)
-
-    // swapByValue(); // Fill in the arguments
+    int a = 3, b = 8;
+    swapByValue(a, b);
+    output << endl << "Pass-by-Value Swap (No Effect):"<< endl;
+    output << "\t" << "Swap("<<a<<", "<<b<<") -> a = "<<a<<", b = "<< b << " (Unchanged)" << endl << endl;
     
     // Demonstrate pass-by-reference (modifies values)
     // swapByReference(); // Fill in the arguments
