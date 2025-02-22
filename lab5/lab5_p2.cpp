@@ -20,7 +20,9 @@ void swapByValue(int a, int b) {
 
 // Function to swap two integers using pass-by-reference (modifies values)
 void swapByReference(int &a, int &b) {
-    
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
 // Function to modify array: Double each value (using pass-by-pointer)
@@ -62,13 +64,15 @@ int main(int argc, char* argv[]) {
     extractCommandLineArgs(argc, argv, output);
 
     // Demonstrate pass-by-value (no effect)
-    int a = 3, b = 8;
+    int a = array[0], b = array[1];
     swapByValue(a, b);
     output << endl << "Pass-by-Value Swap (No Effect):"<< endl;
     output << "\t" << "Swap("<<a<<", "<<b<<") -> a = "<<a<<", b = "<< b << " (Unchanged)" << endl << endl;
     
     // Demonstrate pass-by-reference (modifies values)
-    // swapByReference(); // Fill in the arguments
+    swapByReference(&a, &b);
+    output << endl << "Pass-by-Reference Swap (Successful):"<< endl;
+    output << "\t" << "Swap("<<a<<", "<<b<<") -> a = "<<a<<", b = "<< b << endl << endl;
     
     // Modify array (double values using pointer)
     // doubleValues(); // Fill in the arguments
