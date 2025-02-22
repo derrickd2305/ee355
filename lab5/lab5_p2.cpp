@@ -118,7 +118,7 @@ int main(int argc, char* argv[]) {
     reverseArray(array, size); // Fill in the arguments
     output << "Reversed Order: ";
     for(int i = 0; i < size; i++){
-
+        output << array[i] << " ";
     }
     
     delete [] array;
