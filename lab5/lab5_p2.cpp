@@ -112,7 +112,7 @@ int main(int argc, char* argv[]) {
     int sum = 0, product = 1;
     computeSumAndProduct(array, size, sum, product); // Fill in the arguments
     output << "Sum of Numbers: " << sum << endl;
-    output << "Product of Numbers: " << product << endl;
+    output << "Product of Numbers: " << product << endl << endl;
     
     // Reverse array
     reverseArray(array, size); // Fill in the arguments
