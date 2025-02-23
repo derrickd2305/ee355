@@ -70,11 +70,18 @@ int main(int argc, char* argv[]) {
 
     
     // Convert command-line arguments to integers
-    int* array = new int[argc];
-    int size = argc - 1;
-    for(int i = 0; i < size; i++){
-        array[i] = atoi(argv[i+1]);
+    if(argc > 1){
+        int* array = new int[argc];
+        int size = argc - 1;
+        for(int i = 0; i < size; i++){
+            array[i] = atoi(argv[i+1]);
+        }
     }
+    else{
+        cout << "run this code with command line arguments";
+        return 0;
+    }
+    
 
     // Open output file
     ofstream output("output_Q2.txt");
