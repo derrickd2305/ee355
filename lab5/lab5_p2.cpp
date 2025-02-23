@@ -70,6 +70,7 @@ int main(int argc, char* argv[]) {
 
     
     // Convert command-line arguments to integers
+    /*
     if(argc > 1){
         int* array = new int[argc];
         int size = argc - 1;
@@ -81,6 +82,13 @@ int main(int argc, char* argv[]) {
         cout << "run this code with command line arguments";
         return 0;
     }
+    */
+
+    int* array = new int[argc];
+        int size = argc - 1;
+        for(int i = 0; i < size; i++){
+            array[i] = atoi(argv[i+1]);
+        }
     
 
     // Open output file
