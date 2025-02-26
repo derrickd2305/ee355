@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
 
     // keep calculating fibonacci numbers bottom-up, until our fibonacci number is equal to or greater than the input
     while(fibonacci < input){
-        fibonacci = fibonacci_dp(++n);
+        fibonacci = fibonacci_dp(++n, mem);
     }
     if(fibonacci == input){
         cout << "1" << endl;
