@@ -20,11 +20,11 @@ int main(int argc, char* argv[]){
     int input = atoi(argv[1]);
 
     if(input == 1 || input == 0){
-        cout << "1";
+        cout << "1" << endl;
         return 0;
     }
     else if(input < 0){
-        cout << "0";
+        cout << "0" << endl;
         return 0;
     }
 
