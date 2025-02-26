@@ -26,10 +26,10 @@ int main(int argc, char* argv[]){
 
     // allocate memory for fibonacci number, what term it is, and an array for memoization
     int fibonacci = 1, n = 1;
-    int* mem = new int[input + 2];  // small values of input may not have enough memory, hence the +2
+    int* mem = new int[input + 3];  // small values of input may not have enough memory, hence the +2
 
     // fill array with initial value as a way to check if we have computed that value before
-    for(int i = 0; i < input; i++){
+    for(int i = 0; i < input+3; i++){
         mem[i] = -1;
     }
 
