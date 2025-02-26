@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
     int input = atoi(argv[1]);
 
     if(input < 0){
-        cout << "0" << endl;
+        cout << 0 << endl;
         return 0;
     }
 
@@ -38,10 +38,10 @@ int main(int argc, char* argv[]){
         fibonacci = fibonacci_dp(++n, mem);
     }
     if(fibonacci == input){
-        cout << "1" << endl;
+        cout << 1 << endl;
     }
     else{
-        cout << "0" << endl << fibonacci << endl;
+        cout << 0 << endl << fibonacci << endl;
     }
     delete [] mem;
     return 0;
