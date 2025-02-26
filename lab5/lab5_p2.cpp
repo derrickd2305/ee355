@@ -20,7 +20,9 @@ void swapByValue(int a, int b) {
 
 // Function to swap two integers using pass-by-reference (modifies values)
 void swapByReference(int &a, int &b) {
-    
+    int temp = a;
+    a = b;
+    b = temp;
 }
 
 // Function to modify array: Double each value (using pass-by-pointer)
