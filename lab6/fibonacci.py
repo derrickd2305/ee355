@@ -9,4 +9,4 @@ args = parser.parse_args()
 subprocess.run(["g++", "fibonacci_dp.cpp", "-o", "./fibonacci_dp.out"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 result = subprocess.run(["./fibonacci_dp.out", str(args.n)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-print(result.stdout)
+print(result.stdout.decode().strip())
