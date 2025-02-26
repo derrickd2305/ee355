@@ -10,12 +10,14 @@ void extractCommandLineArgs(int argc, char** argv, ofstream &outputFile) {
 
 // Function to swap two integers using pass-by-value (no effect)
 void swapByValue(int a, int b) {
-    
+    int temp = a;
+    a = b;
+    b = temp;
 }
 
 // Function to swap two integers using pass-by-reference (modifies values)
 void swapByReference(int &a, int &b) {
-    
+    int* temp
 }
 
 // Function to modify array: Double each value (using pass-by-pointer)
