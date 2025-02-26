@@ -19,11 +19,7 @@ int main(int argc, char* argv[]){
     // obtain input from command line
     int input = atoi(argv[1]);
 
-    if(input == 1 || input == 0){
-        cout << "1" << endl;
-        return 0;
-    }
-    else if(input < 0){
+    if(input < 0){
         cout << "0" << endl;
         return 0;
     }
