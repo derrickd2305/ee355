@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){
         cout << "1" << endl;
     }
     else{
-        cout << "0" << endl << fibonacci;
+        cout << "0" << endl << fibonacci << endl;
     }
     return 0;
 }
