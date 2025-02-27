@@ -25,3 +25,8 @@ debugging process for brokenASan.cpp:
       wrong with how we called this function. Line 30, which is within quickSort: "int pi = partition(arr, low, high)", 
       so we go look at line 5 of partition: "int pivot = arr[high]". For this function call, high = n, which is the size
       of arr[]. arr[n] does not exist, so line 50 should instead be "quickSort(arr, 0, n-1)".
+  2.  after this change is made and ASan is run again, it returns the same error type (so another illegal array index) 
+      this time on line 41 in printArray() which prints each element of the array, called by line 52 in main(). Looking
+      at these lines we see taht printArray was called with size = n, and the for loop checking i <= size, which means
+      that the print statement would try to print arr[n], which does not exist. To resolve this issue, we changed line 40 
+      so that the for loop checks if i < size instead of i <= size. 
