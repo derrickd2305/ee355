@@ -30,3 +30,5 @@ debugging process for brokenASan.cpp:
       at these lines we see taht printArray was called with size = n, and the for loop checking i <= size, which means
       that the print statement would try to print arr[n], which does not exist. To resolve this issue, we changed line 40 
       so that the for loop checks if i < size instead of i <= size. 
+  3.  at this point, the code should compile normally, and running the executable created with ASan simply outputs like a regular
+      executable (except the print statement had "n" instead of "\n")
