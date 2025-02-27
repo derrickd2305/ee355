@@ -19,3 +19,9 @@ debugging process for brokengdb1.cpp:
       0.
   6.  replaced "return factorial(--n)*n" with "return n*factorial(--n)". The code is now correct.
     
+debugging process for brokenASan.cpp:
+  1.  we first get a stack-buffer-overflow error of type "READ" on lines 5, 30, and 50, which means that the program
+      is most likely trying to access an illegal array index. Line 50: "quickSort(arr, 0, n)", so there must be something
+      wrong with how we called this function. Line 30, which is within quickSort: "int pi = partition(arr, low, high)", 
+      so we go look at line 5 of partition: "int pivot = arr[high]". For this function call, high = n, which is the size
+      of arr[]. arr[n] does not exist, so line 50 should instead be "quickSort(arr, 0, n-1)".
