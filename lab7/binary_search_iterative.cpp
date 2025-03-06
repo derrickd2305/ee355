@@ -35,7 +35,7 @@ int main(){
     while(target != arr[half]){
         // target not in array
         if(start > end){
-            cout << "Not Found";
+            cout << "Not Found" << endl;
             return 0;
         }
         // check upper half
