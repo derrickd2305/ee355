@@ -48,7 +48,12 @@ int main(){
     // ***************************************
 
     // output file
-    ofstream outputFile("output_bs.txt");
+    //ofstream outputFile("output_bs.txt");
+
+    for(int i = 0; i < n; i++){
+        cout << arr[i] << " ";
+    }
+    cout << endl;
 
     bubbleSort(arr, n);
 
