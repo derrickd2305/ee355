@@ -4,23 +4,23 @@
 using namespace std;
 
 void bubbleSort(int* arr, int n){
-    int temp, j;
-    bool swapped = false;
     for(int i = 0; i < n-1; i++){
         if(arr[i] > arr[i+1]){
-            // swapping values
-            temp = arr[i];
+            // first swap
+            int temp = arr[i];
             arr[i] = arr[i+1];
             arr[i+1] = temp;
             // set swapped flag to true
-            swapped = true;
-            j = i;
+            bool swapped = true;
+            int j = i;
+            // after initial swap, more swaps may be necessary
             while(swapped){
+                //compare swapped value to previous value
                 if(arr[j] < arr[j-1] && j > 0){
                     temp = arr[j];
                     arr[j] = arr[j-1];
                     arr[j-1] = temp;
-                    j--;
+                    j--;    // iterate down the array
                 }
                 else{
                     swapped = false;
@@ -49,7 +49,7 @@ int main(){
     // ***************************************
 
     // output file
-    //ofstream outputFile("output_bs.txt");
+    // ofstream outputFile("output_bs.txt");
 
     for(int i = 0; i < n; i++){
         cout << arr[i] << " ";
