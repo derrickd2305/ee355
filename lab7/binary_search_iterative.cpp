@@ -28,6 +28,9 @@ int main(){
     sort(arr, arr + n);
     // *************************************
 
+    // output file
+    ofstream outputFile("output_bs.txt");
+
     // declaring variables to partition and index through array
     int start = 0, end = n - 1;
     int half = (start + end)/2;
@@ -35,7 +38,7 @@ int main(){
     while(target != arr[half]){
         // target not in array
         if(start > end){
-            cout << "Not Found" << endl;
+            outputFile << "No Found";
             return 0;
         }
         // check upper half
@@ -50,7 +53,7 @@ int main(){
     }
 
     // print statement will only execute if target was found
-    cout << half << endl;
+    outputFile << half;
 
     delete [] arr;
 
