@@ -6,7 +6,7 @@ using namespace std;
 void bubbleSort(int* arr, int n){
     int temp, j;
     bool swapped = false;
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < n-1; i++){
         if(arr[i] > arr[i+1]){
             // swapping values
             temp = arr[i];
@@ -15,8 +15,8 @@ void bubbleSort(int* arr, int n){
             // set swapped flag to true
             swapped = true;
             j = i;
-            while(swapped == true && j > 0){
-                if(arr[j] < arr[j-1]){
+            while(swapped){
+                if(arr[j] < arr[j-1] && j > 0){
                     temp = arr[j];
                     arr[j] = arr[j-1];
                     arr[j-1] = temp;
@@ -51,4 +51,13 @@ int main(){
     ofstream outputFile("output_bs.txt");
 
     bubbleSort(arr, n);
+
+    for(int i = 0; i < n; i++){
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    delete [] arr;
+
+    return 0;
 }
