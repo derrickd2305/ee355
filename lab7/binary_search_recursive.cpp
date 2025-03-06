@@ -6,17 +6,19 @@ using namespace std;
 
 void binary_search_recursive(int target, int* arr, int start, int end){
     if(start == end || start > end){
-        cout << "No Found";
+        cout << "No Found" << endl;
+        return;
     }
     int half = (start + end)/2;
     if(target == arr[half]){
         cout << half;
+        return;
     }
     else if(target < arr[half]){
-        binary_search_recursive(target, arr, start, half);
+        binary_search_recursive(target, arr, start, half - 1);
     }
     else{
-        binary_search_recursive(target, arr, half, end);
+        binary_search_recursive(target, arr, half + 1, end);
     }
 }
 
@@ -43,4 +45,6 @@ int main(){
     sort(arr, arr + n);
 
     binary_search_recursive(target, arr, 0, n-1);
+
+    delete [] arr;
 }
