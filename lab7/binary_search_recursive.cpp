@@ -11,7 +11,7 @@ void binary_search_recursive(int target, int* arr, int start, int end){
     }
     int half = (start + end)/2;
     if(target == arr[half]){
-        cout << half;
+        cout << half << endl;
         return;
     }
     else if(target < arr[half]){
