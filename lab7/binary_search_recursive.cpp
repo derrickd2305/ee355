@@ -5,7 +5,7 @@
 using namespace std;
 
 void binary_search_recursive(int target, int* arr, int start, int end){
-    if(start == end || start > end){
+    if(start > end){
         cout << "No Found" << endl;
         return;
     }
