@@ -49,20 +49,16 @@ int main(){
     // ***************************************
 
     // output file
-    // ofstream outputFile("output_bs.txt");
-
-    for(int i = 0; i < n; i++){
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+    ofstream outputFile("output_bubble.txt");
 
     bubbleSort(arr, n);
 
+    // fill text file with sorted array
     for(int i = 0; i < n; i++){
-        cout << arr[i] << " ";
+        outputFile << arr[i] << " ";
     }
-    cout << endl;
 
+    outputFile.close();
     delete [] arr;
 
     return 0;
