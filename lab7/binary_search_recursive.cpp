@@ -5,25 +5,25 @@
 using namespace std;
 
 // implementing binary search recursively
-void binary_search_recursive(int target, int* arr, int start, int end){
+void binary_search_recursive(int target, int* arr, int start, int end, ostream& file){
     // target is not in array
     if(start > end){
-        cout << "No Found" << endl;
+        file << "No Found";
         return;
     }
     int half = (start + end)/2;
     // target is found
     if(target == arr[half]){
-        cout << half << endl;
+        file << half;
         return;
     }
     // check lower half
     else if(target < arr[half]){
-        binary_search_recursive(target, arr, start, half - 1);
+        binary_search_recursive(target, arr, start, half - 1, file);
     }
     // check upper half
     else{
-        binary_search_recursive(target, arr, half + 1, end);
+        binary_search_recursive(target, arr, half + 1, end, file);
     }
 }
 
@@ -52,9 +52,12 @@ int main(){
     sort(arr, arr + n);
     // ****************************************
 
-    binary_search_recursive(target, arr, 0, n-1);
+    ofstream outputFile("output_bs.txt");
+
+    binary_search_recursive(target, arr, 0, n-1, outputFile);
 
     delete [] arr;
+    outputFile.close();
 
     return 0;
 }
