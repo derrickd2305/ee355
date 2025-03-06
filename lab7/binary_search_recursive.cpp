@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <fstream>
 
+using namespace std;
+
 void binary_search_recursive(int target, int* arr, int start, int end){
     if(start == end || start > end){
         cout << "No Found";
