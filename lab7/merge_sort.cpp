@@ -31,6 +31,7 @@ void merge_sort(int* arr, int n){
     // merging
     int c1 = 0, c2 = 0;
     for(int i = 0; i < n; i++){
+        // if both halves still have elements left, compare them
         if(c1 < n1 && c2 < n2){
             if(arr1[c1] < arr2[c2]){
                 arr[i] = arr1[c1];
@@ -41,6 +42,7 @@ void merge_sort(int* arr, int n){
                 c2++;
             }
         }
+        // one array is depleted, so fill rest with remainder
         else{
             if(c1 < n1){
                 arr[i] = arr1[c1];
@@ -76,18 +78,15 @@ int main(){
     inputFile.close();
     // ***************************************
 
-    for(int i = 0; i < n; i++){
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+    ofstream outputFile("output_ms.txt");
 
     merge_sort(arr, n);
 
     for(int i = 0; i < n; i++){
-        cout << arr[i] << " ";
+        outputFile << arr[i] << " ";
     }
-    cout << endl;
 
+    outputFile.close();
     delete [] arr;
     return 0;
 }
