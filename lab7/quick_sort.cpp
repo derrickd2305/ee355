@@ -3,10 +3,6 @@
 
 using namespace std;
 
-int partition(int* arr, int left, int right){
-
-}
-
 void quickSort(int* arr, int left, int right){
     // base case: array is size 1 or less and is thus already sorted
     if(left >= right){
