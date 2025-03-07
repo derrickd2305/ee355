@@ -15,7 +15,7 @@ void quickSort(int* arr, int left, int right){
     // partitioning the array by moving smaller elements to the left
     // keep track of where the smaller elements end using i
     int i = left;
-    for(int j = 0; j < right; j++){
+    for(int j = left; j < right; j++){
         if(arr[j] < pivot){
             // swapping values
             int temp = arr[i];
@@ -27,11 +27,11 @@ void quickSort(int* arr, int left, int right){
 
     // swap the positions of the pivot and the first greater term
     int temp = pivot;
-    arr[right] = arr[i+1];
-    arr[i+1] = pivot;
+    arr[right] = arr[i];
+    arr[i] = pivot;
 
     // recursive call to quick sort the two partitioned arrays
-    quickSort(arr, left, i);
+    quickSort(arr, left, i - 1);
     quickSort(arr, i+1, right);
 }
 
