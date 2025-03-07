@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <stdlib.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int n = stoi(argv[1]); // Number of disks
+    int n = atoi(argv[1]); // Number of disks
     towerOfHanoi(n, 'A', 'C', 'B'); // A, B and C are names of rods
     outFile << "Total number of moves: " << moveCounter << endl; // Output the total number of moves
     outFile.close();
