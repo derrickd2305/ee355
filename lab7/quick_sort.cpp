@@ -69,13 +69,15 @@ int main(){
     inputFile.close();
     // ***************************************
 
+    fstream outputFile("output_qs.txt")
+
     quickSort(arr, n);
 
     for(int i = 0; i < n; i++){
-        cout << arr[i] << " ";
+        outputFile << arr[i] << " ";
     }
 
-    //outputFile.close();
+    outputFile.close();
     delete [] arr;
     return 0;
 }
