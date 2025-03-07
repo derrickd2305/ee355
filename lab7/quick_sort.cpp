@@ -3,56 +3,40 @@
 
 using namespace std;
 
-void quickSort(int* arr, int n){
-    // base case: array is size 1 or less
-    if(n <= 1){
+int partition(int* arr, int left, int right){
+
+}
+
+void quickSort(int* arr, int left, int right){
+    // base case: array is size 1 or less and is thus already sorted
+    if(left >= right){
         return;
     }
+
+    // arbitrarily chosing the right-most element as pivot
+    int pivot = arr[right];
     
-    // aribitrarily assinging pivot as first 
-    int pivot = arr[0];
-    // allocating memory for three arrays
-    int c1 = 0, c2 = 0, c3 = 0;
-    int* equal = new int[n];
-    int* less = new int[n-1];
-    int* greater = new int[n-1];
-
-    // copying elements into different arrays depending on if they are less than, greater than, or equal to the pivot value
-    for(int i = 0; i < n; i++){
-        if(arr[i] == pivot){
-            equal[c1] = arr[i];
-            c1++;
-        }
-        else if(arr[i] < pivot){
-            less[c2] = arr[i];
-            c2++;
-        }
-        else{
-            greater[c3] = arr[i];
-            c3++;
+    // partitioning the array by moving smaller elements to the left
+    // keep track of where the smaller elements end using i
+    int i = left;
+    for(int j = 0; j < right; j++){
+        if(arr[j] < pivot){
+            // swapping values
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
         }
     }
 
-    // recursive calls to split and sort
-    quickSort(equal, c1);
-    quickSort(less, c2);
-    quickSort(greater, c3);
+    // swap the positions of the pivot and the first greater term
+    int temp = pivot;
+    arr[right] = arr[i+1];
+    arr[i+1] = pivot;
 
-    // replacing original array with sorted arrays
-    for(int i = 0; i < c2; i++){
-        arr[i] = less[i];
-    }
-    for(int i = 0; i < c1; i++){
-        arr[i + c2] = equal[i];
-    }
-    for(int i = 0; i < c3; i++){
-        arr[i + c1 + c2] = greater[i];
-    }
-
-    // free memory
-    delete [] less;
-    delete [] equal;
-    delete [] greater;
+    // recursive call to quick sort the two partitioned arrays
+    quickSort(arr, left, i);
+    quickSort(arr, i+1, right);
 }
 
 int main(){
@@ -75,7 +59,7 @@ int main(){
 
     ofstream outputFile("output_qs.txt");
 
-    quickSort(arr, n);
+    quickSort(arr, 0, n-1);
 
     for(int i = 0; i < n; i++){
         outputFile << arr[i] << " ";
