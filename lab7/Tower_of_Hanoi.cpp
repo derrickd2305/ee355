@@ -22,7 +22,7 @@ void towerOfHanoi(int n, char from_rod, char to_rod, char aux_rod) {
     // move all disks except bottom one to the aux rod, so the og to_rod becomes the aux_rod
     towerOfHanoi(n-1, from_rod, aux_rod, to_rod);
     // move the bottom disk
-    moveDisk(n, from_rod, to_rod)
+    moveDisk(n, from_rod, to_rod);
     // then clear the aux_rod so we can move the bottom one into place, then repeat
     towerOfHanoi(n-1, aux_rod, to_rod, from_rod);
     
