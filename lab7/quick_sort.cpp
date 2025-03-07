@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void quickSort(int* arr, n){
+void quickSort(int* arr, int n){
     // base case: array is size 1 or less
     if(n <= 1){
         return;
