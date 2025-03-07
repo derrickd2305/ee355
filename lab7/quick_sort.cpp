@@ -69,7 +69,7 @@ int main(){
     inputFile.close();
     // ***************************************
 
-    fstream outputFile("output_qs.txt")
+    fstream outputFile("output_qs.txt");
 
     quickSort(arr, n);
 
