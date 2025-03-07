@@ -49,6 +49,10 @@ void quickSort(int* arr, int n){
         arr[i + c1 + c2] = greater[i];
     }
 
+    // free memory
+    delete [] less;
+    delete [] equal;
+    delete [] greater;
 }
 
 int main(){
@@ -69,7 +73,7 @@ int main(){
     inputFile.close();
     // ***************************************
 
-    fstream outputFile("output_qs.txt");
+    ofstream outputFile("output_qs.txt");
 
     quickSort(arr, n);
 
