@@ -75,7 +75,7 @@ int main(){
         cout << arr[i] << " ";
     }
 
-    outputFile.close();
+    //outputFile.close();
     delete [] arr;
     return 0;
 }
