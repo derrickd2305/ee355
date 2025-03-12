@@ -193,7 +193,7 @@ std::vector<unsigned char> edgeDetection(const std::vector<unsigned char>& src, 
 
 // Function to smooth the image using a simple 3x3 average filter.
 std::vector<unsigned char> smoothImage(const std::vector<unsigned char>& src, unsigned width, unsigned height) {
-    std::vector<unsigned char> dst(src.size(),);
+    std::vector<unsigned char> dst(src.size());
     // iterate across each pixel, except for the edges
     for(int i = 1; i < height-1; i++){
         for(int j = 1; j < width-1; j++){
