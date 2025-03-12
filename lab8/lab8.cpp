@@ -109,8 +109,8 @@ std::vector<unsigned char> zoomImage(const std::vector<unsigned char>& image, un
     for(int i = 0; i < newHeight; i++){
         for(int j = 0; j < newWidth; j++){
             // calculate pixel's index in original array
-            unsigned char origI = round(i * scale);
-            unsigned char origJ = round(j * scale);
+            unsigned int origI = round(i * scale);
+            unsigned int origJ = round(j * scale);
             unsigned char origIndex = (origI * width + origJ) * 4;
             // calculate pixel's new index
             unsigned char newIndex = (i * newWidth + j) * 4;
@@ -146,7 +146,7 @@ std::vector<unsigned char> glassEffect(const std::vector<unsigned char>& src, un
             int newIndex = (newI * width + newJ) * 4;
 
             // the actual location of the pixel
-            ogIndex = (i * width + j) * 4;
+            int ogIndex = (i * width + j) * 4;
 
             // for each RGBA
             for(int k = 0; k < 4; k++){
@@ -161,7 +161,7 @@ std::vector<unsigned char> glassEffect(const std::vector<unsigned char>& src, un
 // The image is converted to grayscale and the edge magnitude is computed.
 std::vector<unsigned char> edgeDetection(const std::vector<unsigned char>& src, unsigned width, unsigned height) {
     std::vector<unsigned char> dst(src.size(), 255); // Initialize with white pixels.
-    std::vector<unsigned char> gray(width * height, 0);
+    std::vector<unsigned char> gray(width * height * 4, 0);
     // Convert to grayscale.
     for(int i = 0; i < src.size(); i+=4){
         // weighted sum to calculate grayscale value
@@ -197,7 +197,7 @@ std::vector<unsigned char> smoothImage(const std::vector<unsigned char>& src, un
     std::vector<unsigned char> dst(src.size(),);
     // iterate across each pixel, except for the edges
     for(int i = 1; i < height-1; i++){
-        for(int j = 1; j < width-1; i++){
+        for(int j = 1; j < width-1; j++){
             float avgR = 0, avgG = 0, avgB = 0, avgA = 0;
             // iterate across the 3x3 area around each pixel
             for(int subHeight = -1; subHeight < 2; subHeight++){
@@ -205,13 +205,13 @@ std::vector<unsigned char> smoothImage(const std::vector<unsigned char>& src, un
                     // calculate the index for each pixel in the 3x3 grid
                     smoothI = i + subHeight;
                     smoothJ = j + subWidth;
-                    smoothIndex = (smoothI * width + smoothJ) * 4
+                    smoothIndex = (smoothI * width + smoothJ) * 4;
 
                     // find the average of the RGBA values within the 3x3 grid
-                    avgR += std[smoothIndex]/9;
-                    avgG += std[smoothIndex + 1]/9;
-                    avgB += std[smoothIndex + 2]/9;
-                    avgA += std[smoothIndex + 3]/9;
+                    avgR += src[smoothIndex]/9.0;
+                    avgG += src[smoothIndex + 1]/9.0;
+                    avgB += src[smoothIndex + 2]/9.0;
+                    avgA += src[smoothIndex + 3]/9.0;
                 }
             }
             // the index of the pixel in the smoothed image
