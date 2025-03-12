@@ -64,11 +64,10 @@ void addGaussianNoise(std::vector<unsigned char>& image, double mean, double std
     // iterate across every pixel, every RGB value
     for(int i = 0; i < image.size(); i += 4){
         for(int j = 0; j < 3; j++){
-            // add noise
-            image[i+j] = image[i+j] + d(gen);
+            // add noise, using int variable to prevent overflow
+            int noisyPixel = static_cast<int>(image[i+j]) + round(d(gen));
             // make sure value is still between 0-255
-            image[i+j] = max(0, image[i+j]);
-            image[i+j] = min(255, image[i+j]);
+            image[i+j] = static_cast<unsigned char>(max(0, min(255, noisyPixel)));
         }
     }
 }
