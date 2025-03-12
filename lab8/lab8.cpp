@@ -194,9 +194,19 @@ std::vector<unsigned char> edgeDetection(const std::vector<unsigned char>& src, 
 // Function to smooth the image using a simple 3x3 average filter.
 std::vector<unsigned char> smoothImage(const std::vector<unsigned char>& src, unsigned width, unsigned height) {
     std::vector<unsigned char> dst(src.size());
-    // iterate across each pixel, except for the edges
-    for(int i = 1; i < height-1; i++){
-        for(int j = 1; j < width-1; j++){
+    // iterate across each pixel
+    for(int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
+            // the index of the pixel in the smoothed image
+            int index = (i * width + j) * 4;
+            // edge pixels remain the same
+            if(i == 0 || j == 0 || i == height-1 || j == width - 1){
+                for(int k = 0; k < 4; k++){
+                    dst[index + k] = src[index + k];
+                }
+                continue;
+            }
+            // create variables to store averages for RGBA
             float avgR = 0, avgG = 0, avgB = 0, avgA = 0;
             // iterate across the 3x3 area around each pixel
             for(int subHeight = -1; subHeight < 2; subHeight++){
@@ -213,8 +223,6 @@ std::vector<unsigned char> smoothImage(const std::vector<unsigned char>& src, un
                     avgA += src[smoothIndex + 3]/9.0;
                 }
             }
-            // the index of the pixel in the smoothed image
-            int index = (i * width + j) * 4;
             // assigning the values of the pixel in the smoothed image
             dst[index] = static_cast<unsigned char>(avgR);
             dst[index+1] = static_cast<unsigned char>(avgG);
