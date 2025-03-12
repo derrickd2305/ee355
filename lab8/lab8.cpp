@@ -138,8 +138,8 @@ std::vector<unsigned char> glassEffect(const std::vector<unsigned char>& src, un
             int newJ = j + dis(gen);
 
             // ensure we stay within bounds
-            newI = max(0, min(newI, height - 1));
-            newJ = max(0, min(newJ, width - 1));
+            newI = max(0, min((newI), static_cast<int>(height) - 1));
+            newJ = max(0, min(newJ, static_cast<int>(width) - 1));
 
             // calculate the new index
             int newIndex = (newI * width + newJ) * 4;
