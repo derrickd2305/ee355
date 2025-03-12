@@ -100,16 +100,16 @@ void addSaltPepperNoise(std::vector<unsigned char>& image, double noiseRatio) {
 // Function to zoom the image using nearest-neighbor interpolation.
 std::vector<unsigned char> zoomImage(const std::vector<unsigned char>& image, unsigned width, unsigned height, double scale, unsigned &newWidth, unsigned &newHeight) {
 	// calculate size of zoomed in image
-    newHeight = round(height / scale);
-    newWidth = round(width / scale);
+    newHeight = round(height * scale);
+    newWidth = round(width * scale);
     // create vector to store new image, with 4 elements per pixel
     std::vector<unsigned char> zoomed(newWidth*newHeight*4);
     // iteratre over every pixel
     for(int i = 0; i < newHeight; i++){
         for(int j = 0; j < newWidth; j++){
             // calculate pixel's index in original array
-            unsigned int origI = floor(i * scale);
-            unsigned int origJ = floor(j * scale);
+            unsigned int origI = floor(i / scale);
+            unsigned int origJ = floor(j / scale);
             unsigned int origIndex = (origI * width + origJ) * 4;
             // calculate pixel's new index
             unsigned int newIndex = (i * newWidth + j) * 4;
