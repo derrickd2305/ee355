@@ -176,11 +176,20 @@ std::vector<unsigned char> edgeDetection(const std::vector<unsigned char>& src, 
     // Apply a simple Sobel operator.
     for (unsigned y = 1; y < height - 1; y++) {
         for (unsigned x = 1; x < width - 1; x++) {
+            /*
             int gx = -gray[(y-1)*width + (x-1)] + gray[(y-1)*width + (x+1)]
                      -2 * gray[y*width + (x-1)] + 2 * gray[y*width + (x+1)]
                      -gray[(y+1)*width + (x-1)] + gray[(y+1)*width + (x+1)];
             int gy = -gray[(y-1)*width + (x-1)] - 2 * gray[(y-1)*width + x] - gray[(y-1)*width + (x+1)]
                      + gray[(y+1)*width + (x-1)] + 2 * gray[(y+1)*width + x] + gray[(y+1)*width + (x+1)];
+             */
+            int gx = -gray[((y-1) * width + (x-1)) * 4] + gray[((y-1) * width + (x+1)) * 4]
+                     - 2 * gray[(y * width + (x-1)) * 4] + 2 * gray[(y * width + (x+1)) * 4]
+                     - gray[((y+1) * width + (x-1)) * 4] + gray[((y+1) * width + (x+1)) * 4];
+                    
+            int gy = -gray[((y-1) * width + (x-1)) * 4] - 2 * gray[((y-1) * width + x) * 4] - gray[((y-1) * width + (x+1)) * 4]
+                 + gray[((y+1) * width + (x-1)) * 4] + 2 * gray[((y+1) * width + x) * 4] + gray[((y+1) * width + (x+1)) * 4];
+                    
             int edgeVal = std::min(255, abs(gx) + abs(gy));
             size_t dstIndex = (y * width + x) * 4;
             dst[dstIndex]   = edgeVal;
