@@ -41,9 +41,9 @@ public:
 void tintImage(std::vector<unsigned char>& image, double rFactor, double gFactor, double bFactor) {
 	// data is stored in a 1D array with format RGBA, so we increment by 4 each time for each pixel
     for(int i = 0; i < image.size(); i = i+4){
-        image[i] = min(255, image[i]*rFactor);      //R
-        image[i+1] = min(255, image[i+1]*gFactor);  //G
-        image[i+2] = min(255, image[i+2]*bFactor);  //B
+        image[i] = min(255.0, image[i]*rFactor);      //R
+        image[i+1] = min(255.0, image[i+1]*gFactor);  //G
+        image[i+2] = min(255.0, image[i+2]*bFactor);  //B
     }
 }
 
