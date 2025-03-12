@@ -18,32 +18,59 @@ public:
 
     // Load a PNG file into the image vector.
     bool load(const std::string &filename) {
-	//...
+        unsigned error = lodepng::decode(image, width, height, filename);
+        if(error){
+            cout << "Error loading png: " << lodepng_error_text(error) << endl;
+            return false;
+        }
+        return true;
     }
 
     // Save the image vector into a PNG file.
     bool save(const std::string &filename) {
-   	//...
+        unsigned error = lodepng::encode(filename, image, width, height);
+        if(error){
+            cout << "Error encoding png: " << lodepng_error_text(error) << endl;
+            return false;
+        }
         return true;
     }
 };
 
 // Function to apply a tint by scaling the red, green, and blue channels.
 void tintImage(std::vector<unsigned char>& image, double rFactor, double gFactor, double bFactor) {
-		//...
+	// data is stored in a 1D array with format RGBA, so we increment by 4 each time for each pixel
+    for(int i = 0; i < image.size(); i = i+4){
+        image[i] = min(255, image[i]*rFactor);      //R
+        image[i+1] = min(255, image[i+1]*gFactor);  //G
+        image[i+2] = min(255, image[i+2]*bFactor);  //B
     }
+}
 
 // Function to invert the image colors.
 void invertImage(std::vector<unsigned char>& image) {
-		//...
+    for(int i = 0; i < image.size(); i = i+4){
+        image[i] = 255 - image[i];          //R
+        image[i+1] = 255 - image[i+1];      //G
+        image[i+2] = 255 - image[i+2];      //B
     }
+}
 
 // Function to add Gaussian noise to the image.
 void addGaussianNoise(std::vector<unsigned char>& image, double mean, double stddev) {
     random_device rd;
     mt19937 gen(rd());
     normal_distribution<> d(mean, stddev);
-    //...
+    // iterate across every pixel, every RGB value
+    for(int i = 0; i < image.size(); i += 4){
+        for(int j = 0; j < 3; j++){
+            // add noise
+            image[i+j] = image[i+j] + d(gen);
+            // make sure value is still between 0-255
+            image[i+j] = max(0, image[i+j]);
+            image[i+j] = min(255, image[i+j]);
+        }
+    }
 }
 
 // Function to add salt-and-pepper noise to the image.
@@ -53,12 +80,48 @@ void addSaltPepperNoise(std::vector<unsigned char>& image, double noiseRatio) {
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> dis(0, totalPixels - 1);
-    //...
-    }
+    for(int i = 0; i < numNoisy; i++){
+        // index of the random pixel, starting at R
+        int randomPixel = dis(gen) * 4;
+        // black pixels
+        if(rand() % 2 == 0){
+            for(int j = 0; j < 3; j++){
+                image[randomPixel + j] = 255;
+            }
+        }
+        // white pixels
+        else{
+            for(int j = 0; j < 3; j++){
+                image[randomPixel + j] = 0;
+            }
+        }
+    }    
+}
 
 // Function to zoom the image using nearest-neighbor interpolation.
 std::vector<unsigned char> zoomImage(const std::vector<unsigned char>& image, unsigned width, unsigned height, double scale, unsigned &newWidth, unsigned &newHeight) {
-	//...
+	// calculate size of zoomed in image
+    newHeight = round(height / scale);
+    newWidth = round(width / scale);
+    // create vector to store new image, with 4 elements per pixel
+    std::vector<unsigned char> zoomed(newWidth*newHeight*4);
+    // iteratre over every pixel
+    for(int i = 0; i < newHeight; i++){
+        for(int j = 0; j < newWidth; j++){
+            // calculate pixel's index in original array
+            unsigned char origI = round(i * scale);
+            unsigned char origJ = round(j * scale);
+            unsigned char origIndex = (origI * width + origJ) * 4;
+            // calculate pixel's new index
+            unsigned char newIndex = (i * newWidth + j) * 4;
+
+            // copy RGBA from original image
+            for(int k = 0; k < 4; k++){
+                zoomed[newIndex+k] = image[origIndex + k];
+            }
+
+        }
+    }
     return zoomed;
 }
 
@@ -69,7 +132,28 @@ std::vector<unsigned char> glassEffect(const std::vector<unsigned char>& src, un
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<int> dis(-radius, radius);
-    //...
+    for(int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
+            // randomly generate an offset for both dimensions
+            int newI = i + dis(gen);
+            int newJ = j + dis(gen);
+
+            // ensure we stay within bounds
+            newI = max(0, min(newI, height - 1));
+            newJ = max(0, min(newJ, width - 1));
+
+            // calculate the new index
+            int newIndex = (newI * width + newJ) * 4;
+
+            // the actual location of the pixel
+            ogIndex = (i * width + j) * 4;
+
+            // for each RGBA
+            for(int k = 0; k < 4; k++){
+                dst[ogIndex + k] = src[newIndex + k];
+            }
+        }
+    }
     return dst;
 }
 
@@ -79,7 +163,15 @@ std::vector<unsigned char> edgeDetection(const std::vector<unsigned char>& src, 
     std::vector<unsigned char> dst(src.size(), 255); // Initialize with white pixels.
     std::vector<unsigned char> gray(width * height, 0);
     // Convert to grayscale.
-    //...
+    for(int i = 0; i < src.size(); i+=4){
+        // weighted sum to calculate grayscale value
+        double grayscale = 0.299 * src[i] + 0.587 * src[i+1] + 0.114 * src[i+2];
+        // copying that value to RGB, and keeping the og A
+        gray[i] = grayscale;
+        gray[i+1] = grayscale;
+        gray[i+2] = grayscale;
+        gray[i+3] = src[i+3];
+    }
 
     // Apply a simple Sobel operator.
     for (unsigned y = 1; y < height - 1; y++) {
@@ -102,9 +194,36 @@ std::vector<unsigned char> edgeDetection(const std::vector<unsigned char>& src, 
 
 // Function to smooth the image using a simple 3x3 average filter.
 std::vector<unsigned char> smoothImage(const std::vector<unsigned char>& src, unsigned width, unsigned height) {
-    std::vector<unsigned char> dst(src.size());
-    //...
-        return dst;
+    std::vector<unsigned char> dst(src.size(),);
+    // iterate across each pixel, except for the edges
+    for(int i = 1; i < height-1; i++){
+        for(int j = 1; j < width-1; i++){
+            float avgR = 0, avgG = 0, avgB = 0, avgA = 0;
+            // iterate across the 3x3 area around each pixel
+            for(int subHeight = -1; subHeight < 2; subHeight++){
+                for(int subWidth = -1; subWidth < 2; subWidth++){
+                    // calculate the index for each pixel in the 3x3 grid
+                    smoothI = i + subHeight;
+                    smoothJ = j + subWidth;
+                    smoothIndex = (smoothI * width + smoothJ) * 4
+
+                    // find the average of the RGBA values within the 3x3 grid
+                    avgR += std[smoothIndex]/9;
+                    avgG += std[smoothIndex + 1]/9;
+                    avgB += std[smoothIndex + 2]/9;
+                    avgA += std[smoothIndex + 3]/9;
+                }
+            }
+            // the index of the pixel in the smoothed image
+            index = (i * width + j) * 4;
+            // assigning the values of the pixel in the smoothed image
+            dst[index] = static_cast<unsigned char>(avgR);
+            dst[index+1] = static_cast<unsigned char>(avgG);
+            dst[index+2] = static_cast<unsigned char>(avgB);
+            dst[index+3] = static_cast<unsigned char>(avgA);
+        }
+    }
+    return dst;
 }
 
 int main(int argc, char* argv[]) {
