@@ -160,36 +160,25 @@ std::vector<unsigned char> glassEffect(const std::vector<unsigned char>& src, un
 // The image is converted to grayscale and the edge magnitude is computed.
 std::vector<unsigned char> edgeDetection(const std::vector<unsigned char>& src, unsigned width, unsigned height) {
     std::vector<unsigned char> dst(src.size(), 255); // Initialize with white pixels.
-    std::vector<unsigned char> gray(src.size(), 0);
+    std::vector<unsigned char> gray(width * height, 0);
     // Convert to grayscale.
     for(int i = 0; i < src.size(); i+=4){
         // weighted sum to calculate grayscale value
         float grayscale = 0.299 * src[i] + 0.587 * src[i+1] + 0.114 * src[i+2];
+        // casting
         unsigned char roundedGrayscale = static_cast<unsigned char>(round(grayscale));
-        // copying that value to RGB, and keeping the og A
-        gray[i] = roundedGrayscale;
-        gray[i+1] = roundedGrayscale;
-        gray[i+2] = roundedGrayscale;
-        gray[i+3] = src[i+3];
+        // copying that value
+        gray[i/4] = roundedGrayscale;
     }
 
     // Apply a simple Sobel operator.
     for (unsigned y = 1; y < height - 1; y++) {
         for (unsigned x = 1; x < width - 1; x++) {
-            /*
             int gx = -gray[(y-1)*width + (x-1)] + gray[(y-1)*width + (x+1)]
                      -2 * gray[y*width + (x-1)] + 2 * gray[y*width + (x+1)]
                      -gray[(y+1)*width + (x-1)] + gray[(y+1)*width + (x+1)];
             int gy = -gray[(y-1)*width + (x-1)] - 2 * gray[(y-1)*width + x] - gray[(y-1)*width + (x+1)]
                      + gray[(y+1)*width + (x-1)] + 2 * gray[(y+1)*width + x] + gray[(y+1)*width + (x+1)];
-             */
-            int gx = -gray[((y-1) * width + (x-1)) * 4] + gray[((y-1) * width + (x+1)) * 4]
-                     - 2 * gray[(y * width + (x-1)) * 4] + 2 * gray[(y * width + (x+1)) * 4]
-                     - gray[((y+1) * width + (x-1)) * 4] + gray[((y+1) * width + (x+1)) * 4];
-                    
-            int gy = -gray[((y-1) * width + (x-1)) * 4] - 2 * gray[((y-1) * width + x) * 4] - gray[((y-1) * width + (x+1)) * 4]
-                 + gray[((y+1) * width + (x-1)) * 4] + 2 * gray[((y+1) * width + x) * 4] + gray[((y+1) * width + (x+1)) * 4];
-                    
             int edgeVal = std::min(255, abs(gx) + abs(gy));
             size_t dstIndex = (y * width + x) * 4;
             dst[dstIndex]   = edgeVal;
