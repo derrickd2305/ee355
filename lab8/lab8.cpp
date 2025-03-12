@@ -165,7 +165,7 @@ std::vector<unsigned char> edgeDetection(const std::vector<unsigned char>& src, 
     for(int i = 0; i < src.size(); i+=4){
         // weighted sum to calculate grayscale value
         float grayscale = 0.299 * src[i] + 0.587 * src[i+1] + 0.114 * src[i+2];
-        unsigned char roundedGrayscale = static_cast<unsigned char>(round(grayscale))
+        unsigned char roundedGrayscale = static_cast<unsigned char>(round(grayscale));
         // copying that value to RGB, and keeping the og A
         gray[i] = roundedGrayscale;
         gray[i+1] = roundedGrayscale;
