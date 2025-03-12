@@ -202,9 +202,9 @@ std::vector<unsigned char> smoothImage(const std::vector<unsigned char>& src, un
             for(int subHeight = -1; subHeight < 2; subHeight++){
                 for(int subWidth = -1; subWidth < 2; subWidth++){
                     // calculate the index for each pixel in the 3x3 grid
-                    smoothI = i + subHeight;
-                    smoothJ = j + subWidth;
-                    smoothIndex = (smoothI * width + smoothJ) * 4;
+                    int smoothI = i + subHeight;
+                    int smoothJ = j + subWidth;
+                    int smoothIndex = (smoothI * width + smoothJ) * 4;
 
                     // find the average of the RGBA values within the 3x3 grid
                     avgR += src[smoothIndex]/9.0;
@@ -214,7 +214,7 @@ std::vector<unsigned char> smoothImage(const std::vector<unsigned char>& src, un
                 }
             }
             // the index of the pixel in the smoothed image
-            index = (i * width + j) * 4;
+            int index = (i * width + j) * 4;
             // assigning the values of the pixel in the smoothed image
             dst[index] = static_cast<unsigned char>(avgR);
             dst[index+1] = static_cast<unsigned char>(avgG);
