@@ -108,11 +108,11 @@ std::vector<unsigned char> zoomImage(const std::vector<unsigned char>& image, un
     for(int i = 0; i < newHeight; i++){
         for(int j = 0; j < newWidth; j++){
             // calculate pixel's index in original array
-            unsigned int origI = round(i * scale);
-            unsigned int origJ = round(j * scale);
-            unsigned char origIndex = (origI * width + origJ) * 4;
+            unsigned int origI = floor(i * scale);
+            unsigned int origJ = floor(j * scale);
+            unsigned int origIndex = (origI * width + origJ) * 4;
             // calculate pixel's new index
-            unsigned char newIndex = (i * newWidth + j) * 4;
+            unsigned int newIndex = (i * newWidth + j) * 4;
 
             // copy RGBA from original image
             for(int k = 0; k < 4; k++){
