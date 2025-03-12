@@ -160,15 +160,16 @@ std::vector<unsigned char> glassEffect(const std::vector<unsigned char>& src, un
 // The image is converted to grayscale and the edge magnitude is computed.
 std::vector<unsigned char> edgeDetection(const std::vector<unsigned char>& src, unsigned width, unsigned height) {
     std::vector<unsigned char> dst(src.size(), 255); // Initialize with white pixels.
-    std::vector<unsigned char> gray(width * height * 4, 0);
+    std::vector<unsigned char> gray(src.size(), 0);
     // Convert to grayscale.
     for(int i = 0; i < src.size(); i+=4){
         // weighted sum to calculate grayscale value
-        double grayscale = 0.299 * src[i] + 0.587 * src[i+1] + 0.114 * src[i+2];
+        float grayscale = 0.299 * src[i] + 0.587 * src[i+1] + 0.114 * src[i+2];
+        unsigned char roundedGrayscale = static_cast<unsigned char>(round(grayscale))
         // copying that value to RGB, and keeping the og A
-        gray[i] = grayscale;
-        gray[i+1] = grayscale;
-        gray[i+2] = grayscale;
+        gray[i] = roundedGrayscale;
+        gray[i+1] = roundedGrayscale;
+        gray[i+2] = roundedGrayscale;
         gray[i+3] = src[i+3];
     }
 
