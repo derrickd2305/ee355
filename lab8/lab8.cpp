@@ -23,6 +23,7 @@ public:
             cout << "Error loading png: " << lodepng_error_text(error) << endl;
             return false;
         }
+        cout << "Image loaded successfully: " << width << " x " << height << endl;
         return true;
     }
 
@@ -33,6 +34,7 @@ public:
             cout << "Error encoding png: " << lodepng_error_text(error) << endl;
             return false;
         }
+        cout << "Image saved as " << filename << endl;
         return true;
     }
 };
