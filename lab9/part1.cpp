@@ -6,7 +6,14 @@ using namespace std;
 
 // Define the structure for a node in the linked list
 struct Node {
-    
+    int val;
+    Node* next;
+
+    // constructor to set initial values, with the pointer default to NULL
+    Node(int data){
+        val = data;
+        next = NULL;
+    }
 };
 
 // LinkedList class encapsulates the head pointer and various operations
@@ -15,24 +22,81 @@ private:
     Node* head;
 public:
     // Constructor initializes an empty list
-    
+    LinkedList(){
+        head = NULL;
+    }
 
     // Destructor to free allocated memory
-    
+    ~LinkedList(){
+        while(head != NULL){
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
 
     // Function to add an element at the beginning of the list
     void addFirst(int data) {
-        
+        Node* first = new Node(data);       // new element
+        first->next = head;                 // the second term is the former first term
+        head = first;                       // new element is new head
     }
 
     // Function to append an element at the end of the list
     void append(int data) {
-        
+        // if the LL is empty
+        if(head == NULL){
+            addFirst(data);
+            return;
+        }
+
+        // if the term we are adding is not the first term, we have to iterate through the whole LL
+        Node* temp = head;
+        while(temp->next != NULL){
+            temp = temp->next;
+        }
+
+        Node* last = new Node(data);        // new element
+        temp->next = last;                  // temp is previous last term in LL, so next term is our new term
     }
 
     // Function to insert an element at a specific position (0-indexed)
     void insert(int data, int pos) {
+        // if the data is the first term, use addFirst
+        if(pos == 0){
+            addFirst(data);
+            return;
+        }
+        // error message for negative index
+        else if(pos < 0){
+            cout << "insert error: position can't be negative" << endl;
+            return;
+        }
+
+        // pos is not 0, and the LL does not exist
+        if(head == NULL){
+            cout << "insert error: position is out of bounds" << endl;
+            return;
+        }
+
+        // pointer to iterate through
+        Node* temp = head;
         
+         // iterate through LL
+        for(int i = 0; i < pos-1; i++){
+            if(temp->next != NULL){
+                temp = temp->next;
+            }
+            else{
+                cout << "insert error: position is out of bounds" << endl;
+                return;
+            }
+        }
+
+        // create and insert new data
+        Node* newData = new Node(data);
+        newData->next = temp->next; 
+        temp->next = newData;
     }
 
     // Function to delete the first occurrence of a node with the given value
