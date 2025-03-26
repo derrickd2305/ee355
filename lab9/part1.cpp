@@ -114,41 +114,48 @@ public:
             cout << "List is empty." << endl;
             return;
         }
-        
-        Node* temp = head;
 
-        // case 2: target is first element
-        if(temp->val == data){
-            // case 2a: target is the only element
-            if(head->next == NULL){
-                delete temp;
-                head = NULL;
-                return;
-            }
-            // create new pointer to hold target, and reset temp
-            Node* target = temp;
-            temp = head;
-            // iterate until temp points to the term before target
-            while(temp->next != target){
-                temp = temp->next;
-            }
-            // case 2a: there is no term after target, temp is new last term
-            if(target->next == NULL){
-                temp->next = NULL;
-            }
-            // case 2b: there is a term after target
-            else{
-                temp->next == target->next;
-            }
-            delete target;
+        // case 2: target is first element, so head must be updated
+        if(head->val == data){
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+            return;
         }
+
+        // case3: otherwise we must iterate through 
+        Node* target = head->next;
+        Node* temp = head;
+        // iterate until target points to the target value, and temp is the element before it
+        while(target != NULL && target->val != data){
+            target = target->next;
+            temp = temp->next;
+        }
+        // case 3a: the term is not found
+        if(target == NULL){
+            cout << "Value " << data << " not found in the list." << endl;
+            return; 
+        }
+        // case 3b: target is found
+        temp->next = target->next;
+        delete target;
     }
 
     // Function to search for an element in the list.
     // Returns a pointer to the node if found, otherwise returns nullptr.
     Node* search(int data) {
-       
+        Node* temp = head;
+        // check every value until we reach end of list
+        while(temp != NULL){
+            if(temp->val == data){
+                return temp;
+            }
+            temp = temp->next;
+       }
+       // if we reach end of list without finding target, return NULL
+       return NULL;
     }
+    
 
     // Function to display the linked list
     void display() {
@@ -157,8 +164,8 @@ public:
         while (current != nullptr) {
             // Uncomment the line below to display the data
             // Here we assume the data have one element of type int and one element of pointer type
-            // cout << current->data << " -> ";
-            // current = current->next;
+            cout << current->val << " -> ";
+            current = current->next;
         }
         cout << "NULL" << endl;
     }
@@ -168,7 +175,10 @@ public:
         if (head == nullptr) {
             throw runtime_error("List is empty. Cannot pop.");
         }
-        // 
+        Node* temp = head;
+        head = head->next;
+        cout << temp->val;
+        delete temp;
     }
 };
 
