@@ -73,35 +73,75 @@ public:
             return;
         }
 
-        // pos is not 0, and the LL does not exist
-        if(head == NULL){
-            cout << "insert error: position is out of bounds" << endl;
-            return;
-        }
-
         // pointer to iterate through
         Node* temp = head;
         
          // iterate through LL
         for(int i = 0; i < pos-1; i++){
-            if(temp->next != NULL){
+            if(temp != NULL){
                 temp = temp->next;
             }
             else{
-                cout << "insert error: position is out of bounds" << endl;
-                return;
+                cout << "Position out of bounds. Inserting at the end." << endl;
+                break;
             }
         }
 
-        // create and insert new data
-        Node* newData = new Node(data);
-        newData->next = temp->next; 
-        temp->next = newData;
+        // position is out of bounds
+        if(temp == NULL){
+            //if new data is first term, use add first
+            if(head == NULL){
+                addFirst(data);
+            }
+            // otherwise, use append
+            else{
+                append(data);
+            }
+        }
+        // position is within bounds
+        else{
+            // create and insert new data
+            Node* newData = new Node(data);
+            newData->next = temp->next; 
+            temp->next = newData;
+        }
     }
 
     // Function to delete the first occurrence of a node with the given value
     void deleteNode(int data) {
+        // case 1: empty LL
+        if(head == NULL){
+            cout << "List is empty." << endl;
+            return;
+        }
         
+        Node* temp = head;
+
+        // case 2: target is first element
+        if(temp->val == data){
+            // case 2a: target is the only element
+            if(head->next == NULL){
+                delete temp;
+                head = NULL;
+                return;
+            }
+            // create new pointer to hold target, and reset temp
+            Node* target = temp;
+            temp = head;
+            // iterate until temp points to the term before target
+            while(temp->next != target){
+                temp = temp->next;
+            }
+            // case 2a: there is no term after target, temp is new last term
+            if(target->next == NULL){
+                temp->next = NULL;
+            }
+            // case 2b: there is a term after target
+            else{
+                temp->next == target->next;
+            }
+            delete target;
+        }
     }
 
     // Function to search for an element in the list.
@@ -185,3 +225,4 @@ int main(){
         }
     }
     return 0;
+}
