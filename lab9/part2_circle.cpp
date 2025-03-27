@@ -33,6 +33,21 @@ void printListWithLimit(Node* head, int limit = 10) {
 
 // Function to detect a cycle using the two-pointer (Floyd's) method.
 bool isCircularTwoPointer(Node* head) {
+    Node* slow = head;
+    Node* fast = head;
+
+    // make sure that we don't reach NULL
+    while(slow != NULL && fast != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+
+        // if the two pointers point ot the same node, then the LL is circular
+        if(slow == fast){
+            return true;
+        }
+    }
+    // if we reach NULL, then the LL is not circular
+    return false;
 }
 
 int main() {
