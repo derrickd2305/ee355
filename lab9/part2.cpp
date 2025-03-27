@@ -192,7 +192,7 @@ public:
 
 int main() {
     // Open input.txt file for reading
-    std::ifstream infile("input_part2.txt");
+    ifstream infile("input_part2.txt");
     if (!infile) {
         std::cerr << "Error opening input.txt" << "\n";
         return 1;
