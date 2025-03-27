@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 // Define the structure for a node in the doubly linked list
@@ -192,7 +193,7 @@ public:
 
 int main() {
     // Open input.txt file for reading
-    ifstream infile("input_part2.txt");
+    std::ifstream infile("input_part2.txt");
     if (!infile) {
         std::cerr << "Error opening input.txt" << "\n";
         return 1;
