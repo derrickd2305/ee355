@@ -52,11 +52,11 @@ bool isCircularTwoPointer(Node* head) {
 
 int main() {
     
-    Node* L1 = new Node{1, nullptr, nullptr};
-    Node* L2 = new Node{2, nullptr, nullptr};
-    Node* L3 = new Node{3, nullptr, nullptr};
-    Node* L4 = new Node{4, nullptr, nullptr};
-    Node* L5 = new Node{5, nullptr, nullptr};
+    Node* L1 = new Node{1, NULL, NULL};
+    Node* L2 = new Node{2, NULL, NULL};
+    Node* L3 = new Node{3, NULL, NULL};
+    Node* L4 = new Node{4, NULL, NULL};
+    Node* L5 = new Node{5, NULL, NULL};
 
     L1->next = L2;  L2->prev = L1;
     L2->next = L3;  L3->prev = L2;
@@ -68,11 +68,11 @@ int main() {
     cout << "Cycle detected: " << (isCircularTwoPointer(L1) ? "Yes" : "No") << "\n\n";
 
     
-    Node* C1 = new Node{10, nullptr, nullptr};
-    Node* C2 = new Node{20, nullptr, nullptr};
-    Node* C3 = new Node{30, nullptr, nullptr};
-    Node* C4 = new Node{40, nullptr, nullptr};
-    Node* C5 = new Node{50, nullptr, nullptr};
+    Node* C1 = new Node{10, NULL, NULL};
+    Node* C2 = new Node{20, NULL, NULL};
+    Node* C3 = new Node{30, NULL, NULL};
+    Node* C4 = new Node{40, NULL, NULL};
+    Node* C5 = new Node{50, NULL, NULL};
 
     C1->next = C2;  C2->prev = C1;
     C2->next = C3;  C3->prev = C2;
@@ -89,7 +89,7 @@ int main() {
     
     delete L1; delete L2; delete L3; delete L4; delete L5;
     
-    C5->next = nullptr;
+    C5->next = NULL;
     delete C1; delete C2; delete C3; delete C4; delete C5;
 
     return 0;
