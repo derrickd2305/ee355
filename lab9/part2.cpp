@@ -185,9 +185,9 @@ public:
             // Uncomment the line below to display the data
             // Here we assume the data have one element of type int and one element of pointer type
 
-            //cout << current->val << " <-> ";
+            cout << current->val << " <-> ";
         }
-        //cout << "NULL" << endl;
+        cout << "NULL" << endl;
     }
 };
 
