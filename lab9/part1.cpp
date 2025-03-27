@@ -142,7 +142,7 @@ public:
     }
 
     // Function to search for an element in the list.
-    // Returns a pointer to the node if found, otherwise returns nullptr.
+    // Returns a pointer to the node if found, otherwise returns NULL.
     Node* search(int data) {
         Node* temp = head;
         // check every value until we reach end of list
@@ -161,7 +161,7 @@ public:
     void display() {
         Node* current = head;
         cout << "Linked List: ";
-        while (current != nullptr) {
+        while (current != NULL) {
             // Uncomment the line below to display the data
             // Here we assume the data have one element of type int and one element of pointer type
             cout << current->val << " -> ";
@@ -172,7 +172,7 @@ public:
 
         // Function to remove and return the first element of the list
     int pop() {
-        if (head == nullptr) {
+        if (head == NULL) {
             throw runtime_error("List is empty. Cannot pop.");
         }
         Node* temp = head;
