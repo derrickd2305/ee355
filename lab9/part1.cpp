@@ -177,8 +177,9 @@ public:
         }
         Node* temp = head;
         head = head->next;
-        cout << temp->val;
+        int poppedVal = temp->val;
         delete temp;
+        return poppedVal;
     }
 };
 
