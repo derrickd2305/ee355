@@ -85,13 +85,12 @@ public:
         // iterate through the list, stopping if we hit the end of the DLL before reaching the desired position
         Node* temp = head;                      // temp to traverse
         for(int i = 0; i < pos - 1; i++){
-            if(temp != NULL){
-                temp = temp->next;
-            }
-            else{                               // NULL hit -> append at end
+            if(temp == NULL){                   // NULL hit -> append at end
                 append(data);
                 return;
-            }
+                
+            }                           
+            temp = temp->next;              // otherwise, traverse as normal            
         }
 
         // if we reached the position without errors, add the data as normal
@@ -122,7 +121,9 @@ public:
         // if we delete the first term, head must be updated
         if(temp == head){
             head = temp->next;
-            temp->next->prev = NULL;
+            if(head != NULL){
+                head->prev = NULL;
+            }
             delete temp;
             return;
         }
@@ -160,6 +161,10 @@ public:
     // Function to check whether the doubly linked list is circular using two pointers.
     // The list is considered circular if there is a cycle in the next pointers.
     bool isCircularTwoPointer() {
+        // if the list is empty return false
+        if(head == NULL){
+            return false;
+        }
         Node* slow = head;
         Node* fast = head;
 
@@ -186,6 +191,7 @@ public:
             // Here we assume the data have one element of type int and one element of pointer type
 
             cout << current->val << " <-> ";
+            current = current->next;
         }
         cout << "NULL" << endl;
     }
