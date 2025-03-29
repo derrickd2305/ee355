@@ -4,23 +4,41 @@ using namespace std;
 
 // Define the structure for a node in the circular linked list
 struct Node {
+    int val;
+    Node* next;
+
+    // constructor
+    Node(int data){
+        val = data;
+        next = NULL;
+    }
 };
 
 class CircularQueue {
 private:
-   
+   Node* tail;
 
 public:
     // Constructor initializes an empty queue
-    CircularQueue()
+    CircularQueue(){
+        tail = NULL;
+    }
 
     // Destructor to free allocated memory
     ~CircularQueue() {
-        
+        while(tail != NULL){
+            Node* temp = tail;
+            tail = tail->next;
+            delete temp;
+        }
     }
 
     // Function to check if the queue is empty
     bool isEmpty() {
+        if(tail == NULL){
+            return true;
+        }
+        return false;
     }
 
     // Function to check if the queue is full
