@@ -94,11 +94,11 @@ public:
         // if not empty
         Node* temp = tail->next;
         tail->next = temp->next;
-        delete temp;
         count--;
 
         // Output the information about the dequeued element
-        cout << "Dequeued: " << val << " (size: " << count << ")" << endl;
+        cout << "Dequeued: " << temp->val << " (size: " << count << ")" << endl;
+        delete temp;
     }
 
     // Function to get the front element of the queue (peek)
