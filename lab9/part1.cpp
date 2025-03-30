@@ -128,7 +128,7 @@ public:
         Node* temp = head;
         // iterate until target points to the target value, and temp is the element before it
         while(target != NULL && target->val != data){
-            temp = target->next;
+            temp = target;
             target= target->next;
         }
         // case 3a: the term is not found
