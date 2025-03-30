@@ -85,7 +85,7 @@ public:
         // iterate through the list, stopping if we hit the end of the DLL before reaching the desired position
         Node* temp = head;                      // temp to traverse
         for(int i = 0; i < pos - 1; i++){
-            if(temp == NULL){                   // NULL hit -> append at end
+            if(temp == NULL || temp->next == NULL){                   // NULL hit -> append at end
                 append(data);
                 return;
                 
@@ -97,13 +97,21 @@ public:
         Node* newData = new Node(data);
         newData->prev = temp;
         newData->next = temp->next;
+        if (temp->next != NULL) { 
+            temp->next->prev = newData;
+        }
         temp->next = newData;
+
+        // if the new term is the last term, update tail
+        if(newData->next == NULL){
+            tail = newData;
+        }
     }
 
     // Function to delete the node at a specific index (0-indexed)
     void deleteAtIndex(int index) {
         // if the index is Invalid or the list is empty
-        if(index < 0 || head == NULL || tail == NULL){
+        if(index < 0 || head == NULL){
             cout << "Invalid index or empty list." << endl;
             return;
         }
@@ -111,7 +119,7 @@ public:
         // iterate through the DLL
         Node* temp = head;
         for(int i = 0; i < index; i++){
-            if(temp == NULL){
+            if(temp->next == NULL){
                 cout << "Index out of bounds." << endl;
                 return;
             }
@@ -124,23 +132,22 @@ public:
             if(head != NULL){
                 head->prev = NULL;
             }
-            delete temp;
-            return;
+            else{
+                tail == NULL;
+            }
         }
         // if we delete the last term, tail must be updated
         else if(temp == tail){
             tail = temp->prev;
-            temp->prev->next = NULL;
-            delete temp;
-            return;
+            tail->next = NULL;
         }
         // otherwise, remove as normal by linking the terms before and after temp together
         else{
             temp->prev->next = temp->next;
             temp->next->prev = temp->prev;
-            delete temp;
-            return;
         }
+
+        delete temp;
     }
 
     // Function to search for an element in the list.
