@@ -94,13 +94,12 @@ public:
         }
         
         // if not empty
-
+        Node* temp = tail->next;
         // if the element is the only element
         if(tail == tail->next){
             tail = NULL;
         }
-        else{
-            Node* temp = tail->next;
+        else{            
             tail->next = temp->next;
         }
         count--;
