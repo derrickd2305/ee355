@@ -33,6 +33,10 @@ void printListWithLimit(Node* head, int limit = 10) {
 
 // Function to detect a cycle using the two-pointer (Floyd's) method.
 bool isCircularTwoPointer(Node* head) {
+    // if the list is empty return false
+    if(head == NULL){
+        return false;
+    }
     Node* slow = head;
     Node* fast = head;
 
