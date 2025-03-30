@@ -38,7 +38,7 @@ public:
             temp1 = temp2;
         }
         delete tail;
-        tail == NULL;
+        tail = NULL;
     }
 
     // Function to check if the queue is empty
@@ -75,6 +75,7 @@ public:
         }
         else{
             newData->next = tail->next;
+            tail->next = newData;
             tail = newData;
         }
 
@@ -89,11 +90,19 @@ public:
         // If the queue is empty
         if(isEmpty()){
             cout << "Queue is empty. Cannot dequeue." << endl;
+            return;
         }
         
         // if not empty
-        Node* temp = tail->next;
-        tail->next = temp->next;
+
+        // if the element is the only element
+        if(tail == tail->next){
+            tail = NULL;
+        }
+        else{
+            Node* temp = tail->next;
+            tail->next = temp->next;
+        }
         count--;
 
         // Output the information about the dequeued element
@@ -110,18 +119,24 @@ public:
         }
 
         // if queue is not empty
-        return tail->val;
+        return tail->next->val;
     }
 
     // Function to display the queue elements
     void display() {
+        // If the queue is empty
+        if(isEmpty()){
+            cout << "Queue is empty." << endl;
+            return;
+        }
+
         Node* temp = tail->next;
         cout << "Circular Queue: ";
         while(temp != tail){
             cout << temp->val << " -> ";
             temp = temp->next;
         }
-        cout << tail << " -> (back to head)" << endl;
+        cout << tail->val << " -> (back to head)" << endl;
     }
 };
 
