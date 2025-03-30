@@ -87,6 +87,7 @@ public:
         for(int i = 0; i < pos - 1; i++){
             if(temp == NULL || temp->next == NULL){                   // NULL hit -> append at end
                 append(data);
+                cout << "Position out of bounds. Inserting at the end." << endl;
                 return;
                 
             }                           
