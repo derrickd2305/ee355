@@ -94,7 +94,7 @@ class CLL{
         do{
             cout << temp->val << " ";
             temp = temp->next;
-        }while(temp->next != head);
+        }while(temp != head);
         cout << endl;
     }
 
