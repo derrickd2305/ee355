@@ -28,7 +28,7 @@ class CLL{
                 temp = temp->next;
             }
 
-            temp->next = newNode;
+            temp->next = newData;
             newNode->next = head;
         }
 
@@ -40,7 +40,7 @@ class CLL{
 
         // case: head is target and is only term
         if(head->next == head){
-            if(head->val == target){
+            if(head->val == data){
                 delete head;
                 head = NULL;
             }
