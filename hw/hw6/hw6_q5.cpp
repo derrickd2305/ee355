@@ -29,7 +29,7 @@ class CLL{
             }
 
             temp->next = newData;
-            newNode->next = head;
+            newData->next = head;
         }
 
     void remove(int data){
