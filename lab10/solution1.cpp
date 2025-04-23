@@ -11,7 +11,7 @@ const int NUM_CYCLES = 10;
 std::mutex chopsticks[NUM_PHILOSOPHERS];
 
 // This will cause deadlock
-void philosopher_naive(int id) {
+void philosopher_safe(int id) {
     int left = id;
     int right = (id + 1) % NUM_PHILOSOPHERS;
 
@@ -19,16 +19,31 @@ void philosopher_naive(int id) {
         std::cout << "[P" << id << "] Thinking...\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(100 + id * 10));
 
-        std::cout << "[P" << id << "] Hungry, trying to pick up left " << left << " and right " << right << "\n";
+        // solution 1: the chopstick with the lower order will be picked up first
+        if(left < right){
+            std::cout << "[P" << id << "] Hungry, trying to pick up left " << left << " and right " << right << "\n";
 
-        chopsticks[left].lock();
-        std::cout << "[P" << id << "] Got left chopstick " << left << "\n";
-        
-        // Add a delay between picking up chopsticks to increase deadlock chance
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        
-        chopsticks[right].lock();
-        std::cout << "[P" << id << "] Got right chopstick " << right << "\n";
+            chopsticks[left].lock();
+            std::cout << "[P" << id << "] Got left chopstick " << left << "\n";
+            
+            // Add a delay between picking up chopsticks to increase deadlock chance
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            
+            chopsticks[right].lock();
+            std::cout << "[P" << id << "] Got right chopstick " << right << "\n";
+        }
+        else{
+            std::cout << "[P" << id << "] Hungry, trying to pick up right " << right << " and left " << left << "\n";
+
+            chopsticks[right].lock();
+            std::cout << "[P" << id << "] Got right chopstick " << right << "\n";
+
+            // Add a delay between picking up chopsticks to increase deadlock chance
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+            chopsticks[left].lock();
+            std::cout << "[P" << id << "] Got left chopstick " << left << "\n";
+        }
 
         std::cout << "[P" << id << "] Eating...\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -47,11 +62,12 @@ int main() {
     std::cout << "Starting Dining Philosophers Simulation (Safe Version)...\n";
 
     for (int i = 0; i < NUM_PHILOSOPHERS; ++i) {
-        philosophers.push_back(std::thread(philosopher_naive, i)); // Use to test deadlock
+        philosophers.push_back(std::thread(philosopher_safe, i)); // Use to test deadlock
     }
 
     for (size_t i = 0; i < philosophers.size(); ++i) {
         // TODO: Wait until all the threads finished. 
+        philosophers[i].join();
     }
 
     std::cout << "All philosophers finished their meals. No deadlock detected.\n";
