@@ -11,7 +11,7 @@ const int NUM_CYCLES = 10;
 std::mutex chopsticks[NUM_PHILOSOPHERS];
 
 // This will cause deadlock
-void philosopher_naive(int id) {
+void philosopher_safe(int id) {
     int left = id;
     int right = (id + 1) % NUM_PHILOSOPHERS;
 
@@ -62,7 +62,7 @@ int main() {
     std::cout << "Starting Dining Philosophers Simulation (Safe Version)...\n";
 
     for (int i = 0; i < NUM_PHILOSOPHERS; ++i) {
-        philosophers.push_back(std::thread(philosopher_naive, i)); // Use to test deadlock
+        philosophers.push_back(std::thread(philosopher_safe, i)); // Use to test deadlock
     }
 
     for (size_t i = 0; i < philosophers.size(); ++i) {
